@@ -3,7 +3,7 @@ import logo from "../../assets/image/pizza-logo.svg";
 import basket from "../../assets/image/basket.svg";
 import "../style.css";
 
-export default function Header() {
+const Header = () => {
   return (
     <div className="header">
       <div className="container">
@@ -47,4 +47,5 @@ export default function Header() {
       </div>
     </div>
   );
-}
+};
+export default Header;

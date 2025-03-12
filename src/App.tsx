@@ -1,5 +1,5 @@
 import HomePage from "./pages/HomePage";
-import { Header } from "./components";
+import { Header } from "./components/index";
 import "./components/style.css";
 
 function App() {

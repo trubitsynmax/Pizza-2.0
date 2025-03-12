@@ -1,0 +1,18 @@
+.categories {
+}
+.categories__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+.categories__list {
+  padding: 13px 30px;
+  background-color: #f9f9f6ff;
+  border-radius: 30px;
+  font-weight: var(--bold);
+  &_active {
+    background-color: #000;
+    color: #fff;
+  }
+}

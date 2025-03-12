@@ -1,5 +1,7 @@
 /* Первичные настройки и обнуляющий стиль */
 @import "./css/header.scss";
+@import "./css/categories.scss";
+@import "./css//sort.scss";
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap");
 
@@ -9,10 +11,21 @@
   --family: "Roboto", sans-serif, serif;
   --gray: #a4a7a4ff;
 }
+ul,
+li,
+ol {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
 body {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+}
+button {
+  background-color: transparent;
+  border: 0;
 }
 input:focus,
 select:focus,
@@ -36,6 +49,7 @@ body {
   padding: 40px 0;
 }
 .content {
+  padding: 40px 0;
 }
 .container {
   max-width: 1200px;
