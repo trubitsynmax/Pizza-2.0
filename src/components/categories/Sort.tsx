@@ -5,6 +5,7 @@ const sortList = ["популярности", "цене", "алфавиту"];
 const Sort = () => {
   const [activePopup, setActivePopup] = React.useState(false);
   const [activeItem, setActiveItem] = React.useState(0);
+  const [ascDesc, setAscDesc] = React.useState(true);
 
   const onClickPopup = () => {
     setActivePopup(!activePopup);
@@ -15,21 +16,30 @@ const Sort = () => {
     setActivePopup(!activePopup);
   };
 
+  const onAscDesc = () => {
+    setAscDesc(!ascDesc);
+  };
+
   return (
     <div className="sort">
-      <div className="sort__row" onClick={onClickPopup}>
-        <div className="sort__arrow">
+      <div className="sort__row">
+        <div
+          className={ascDesc ? "sort__arrow" : "sort__arrow sort__arrow_active"}
+          onClick={onAscDesc}
+        >
           <span></span>
         </div>
-        <div className="sort__title">Сортировка по:</div>
-        <div className="sort__subtitle">{sortList[activeItem]}</div>
+        <div className="sort__body" onClick={onClickPopup}>
+          <div className="sort__title">Сортировка по:</div>
+          <div className="sort__subtitle">{sortList[activeItem]}</div>
+        </div>
       </div>
       <div
         className={
-          activePopup ? "sort__popup" : "sort__popup sort__popup_active"
+          activePopup ? "sort__popup sort__popup_active" : "sort__popup"
         }
       >
-        <ul className="sort__body">
+        <ul className="sort__items">
           {sortList.map((item, index) => (
             <li
               key={index}

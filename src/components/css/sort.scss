@@ -1,12 +1,56 @@
 .sort {
   position: relative;
+  padding: 15px 0 0 15px;
   &__row {
+    display: flex;
+    position: relative;
+  }
+  &__body {
     display: flex;
     gap: 5px;
     cursor: pointer;
   }
   &__arrow {
+    position: absolute;
+    left: -35px;
+    top: -3px;
+    width: 25px;
+    height: 25px;
+    transition: all 500ms ease 0s;
+    cursor: pointer;
+    &_active {
+      transform: rotate(180deg);
+    }
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      width: 1px;
+      height: 25px;
+      left: 50%;
+      top: 0;
+      transform: translate(-50%, 0);
+      background-color: #000;
+    }
+    &::before {
+      width: 1.3px;
+      height: 13px;
+      top: -3px;
+      left: 8.2px;
+      transform: rotate(45deg);
+    }
     span {
+      position: absolute;
+      &::before {
+        content: "";
+        position: absolute;
+        background-color: #000;
+        width: 1.3px;
+        height: 13px;
+        top: -3px;
+        right: -18px;
+        transform: rotate(-45deg);
+      }
     }
   }
   &__title {
@@ -29,8 +73,6 @@
       display: block;
     }
   }
-  &__body {
-  }
   &__item {
     padding: 15px 20px;
     font-size: 16px;
@@ -50,8 +92,26 @@
 
 @media (max-width: 425px) {
   .sort {
+    padding: 35px 0 0 0;
     &__row {
-      justify-content: center;
+      justify-content: flex-end;
+    }
+    &__body {
+      font-size: 16px;
+    }
+    &__arrow {
+      left: 0px;
+      top: -3px;
+    }
+    &__popup {
+      top: 70px;
+    }
+  }
+}
+@media (max-width: 320px) {
+  .sort {
+    &__body {
+      font-size: 15px;
     }
   }
 }

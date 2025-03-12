@@ -1,16 +1,18 @@
 .categories {
+  margin: 0 0 25px 0;
   &__row {
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
+    gap: 25px;
   }
   &__column {
     &_big {
       flex: 0 1 70%;
     }
     &_small {
-      flex: 0 1 23%;
+      flex: 0 1 20%;
     }
   }
   &__item {
@@ -26,11 +28,10 @@
   &__list {
     display: grid;
     grid-template-columns: repeat(6, auto);
+    grid-template-rows: auto;
     gap: 10px;
-    grid-template-rows: 50px;
     align-items: center;
     text-align: center;
-    margin: 0 0 35px 0;
   }
 }
 
@@ -48,6 +49,7 @@
     }
     &__list {
       grid-template-columns: repeat(3, auto);
+      gap: 15px;
     }
   }
 }

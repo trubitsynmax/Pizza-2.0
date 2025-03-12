@@ -1,7 +1,8 @@
 /* Первичные настройки и обнуляющий стиль */
 @import "./css/header.scss";
 @import "./css/categories.scss";
-@import "./css//sort.scss";
+@import "./css/sort.scss";
+@import "./css/pizzac.scss";
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap");
 
