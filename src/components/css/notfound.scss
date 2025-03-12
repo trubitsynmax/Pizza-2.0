@@ -1,0 +1,50 @@
+.not {
+  &__body {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+  &__emoji {
+    font-size: 6vw;
+    margin: 0 0 15px 0;
+  }
+  &__title {
+    font-size: 2.5vw;
+    font-weight: var(--bold);
+    margin: 0 0 45px 0;
+    text-align: center;
+  }
+  &__btn {
+    font-size: 24px;
+    background-color: var(--orange);
+    color: #fff;
+    padding: 10px 30px;
+    border-radius: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .not {
+    &__emoji {
+      font-size: 10vw;
+    }
+    &__title {
+      font-size: 4vw;
+    }
+  }
+}
+@media (max-width: 425px) {
+  .not {
+    &__emoji {
+      font-size: 15vw;
+    }
+    &__title {
+      font-size: 6vw;
+    }
+    &__btn {
+      padding: 10px 15px;
+      font-size: 17px;
+    }
+  }
+}

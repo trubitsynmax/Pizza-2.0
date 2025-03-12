@@ -2,6 +2,7 @@ import React from "react";
 import logo from "../../assets/image/pizza-logo.svg";
 import basket from "../../assets/image/basket.svg";
 import "../style.css";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -9,7 +10,7 @@ const Header = () => {
       <div className="container">
         <div className="header__row">
           <div className="header__column header__column_col1">
-            <div className="header__body">
+            <Link to="/" className="header__body">
               <img
                 src={logo}
                 alt="Картинка где-то потерялась"
@@ -19,7 +20,7 @@ const Header = () => {
                 <span>React Pizza V2</span> <br /> самая вкусная пицца во
                 вселенной
               </p>
-            </div>
+            </Link>
           </div>
           <div className="header__column header__column_col2">
             <input
