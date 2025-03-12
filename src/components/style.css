@@ -1,0 +1,43 @@
+/* Первичные настройки и обнуляющий стиль */
+@import "./css/header.scss";
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap");
+
+:root {
+  --orange: #ff5f00ff;
+  --bold: 600;
+  --family: "Roboto", sans-serif, serif;
+  --gray: #a4a7a4ff;
+}
+body {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+input:focus,
+select:focus,
+textarea:focus {
+  background-color: transparent;
+  outline: none;
+}
+
+/* ------------------------------------------------------------- */
+
+body {
+  background-color: #fddf84ff;
+  font-family: var(--family);
+}
+
+.wrapper {
+  max-width: 1400px;
+  margin: 50px auto;
+  background-color: #fff;
+  border-radius: 15px;
+  padding: 40px 0;
+}
+.content {
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
