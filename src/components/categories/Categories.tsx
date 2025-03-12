@@ -27,22 +27,24 @@ const Categories: React.FC = () => {
     <div className="categories">
       <div className="container">
         <div className="categories__row">
-          <div className="categories__column">
-            {listCategory.map((item, index) => (
-              <button
-                key={index}
-                className={
-                  value == item.id
-                    ? "categories__list categories__list_active"
-                    : "categories__list"
-                }
-                onClick={() => getIndex(index)}
-              >
-                {item.category}
-              </button>
-            ))}
+          <div className="categories__column categories__column_big">
+            <ul className="categories__list">
+              {listCategory.map((item, index) => (
+                <li
+                  key={index}
+                  className={
+                    value == item.id
+                      ? "categories__item categories__item_active"
+                      : "categories__item"
+                  }
+                  onClick={() => getIndex(index)}
+                >
+                  {item.category}
+                </li>
+              ))}
+            </ul>
           </div>
-          <div className="categories__column">
+          <div className="categories__column categories__column_big_small">
             <Sort />
           </div>
         </div>

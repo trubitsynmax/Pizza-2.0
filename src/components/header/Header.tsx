@@ -33,7 +33,7 @@ const Header = () => {
           <div className="header__column header__column_col3">
             <button className="header__button">
               <div className="header__sum">0 ₽</div>
-              <div className="head__count">
+              <div className="header__count">
                 <img
                   src={basket}
                   alt="Картинка где-то потерялась"

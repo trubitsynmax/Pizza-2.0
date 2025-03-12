@@ -39,6 +39,7 @@ textarea:focus {
 body {
   background-color: #fddf84ff;
   font-family: var(--family);
+  margin: 0 30px;
 }
 
 .wrapper {
@@ -54,4 +55,17 @@ body {
 .container {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 35px;
+}
+
+@media (max-width: 1024px) {
+  .wrapper {
+    margin: 30px auto;
+  }
+  body {
+    margin: 0 15px;
+  }
+  .container {
+    padding: 0 20px;
+  }
 }

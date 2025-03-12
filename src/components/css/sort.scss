@@ -47,3 +47,11 @@
     }
   }
 }
+
+@media (max-width: 425px) {
+  .sort {
+    &__row {
+      justify-content: center;
+    }
+  }
+}
