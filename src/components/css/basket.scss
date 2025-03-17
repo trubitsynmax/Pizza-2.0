@@ -1,0 +1,242 @@
+.basket {
+  &__items {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 0 35px 0;
+    &_header {
+      border-bottom: 1px solid #f6f6f3ff;
+      padding: 0 0 50px 0;
+      margin: 0 0 50px 0;
+    }
+  }
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex: 0 1 50%;
+  }
+  &__picture {
+    &_big {
+      width: 30px;
+      height: 30px;
+    }
+    &_small {
+      width: 20px;
+      height: 20px;
+      color: #fff;
+    }
+  }
+  &__title {
+    font-size: 32px;
+    font-weight: var(--bold);
+  }
+  &__clear {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex: 0 1 50%;
+    gap: 7px;
+    color: #b6b6b4ff;
+    cursor: pointer;
+    transition: color 300ms ease 0s;
+    &:hover {
+      color: #000;
+      .basket__picture_small {
+        color: #000;
+      }
+    }
+  }
+  &__text-clear {
+  }
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 0 0 25px 0;
+  }
+  &__image {
+    width: 80px;
+    height: 80px;
+  }
+  &__body {
+    flex: 0 1 35%;
+  }
+  &__sub-title {
+    font-size: 24px;
+    font-weight: var(--bold);
+  }
+  &__label {
+    color: #b6b6b4ff;
+  }
+  &__row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 0 1 40%;
+  }
+  &__minus {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid var(--orange);
+    position: relative;
+    transition: 300ms all ease 0s;
+    &:before {
+      content: "";
+      width: 10px;
+      height: 2px;
+      background-color: var(--orange);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    &:hover {
+      background-color: var(--orange);
+      &:before {
+        background-color: #fff;
+      }
+    }
+  }
+  &__count {
+    font-size: 18px;
+    font-weight: var(--bold);
+  }
+  &__plus {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid var(--orange);
+    position: relative;
+    transition: 300ms all ease 0s;
+    &::before,
+    &::after {
+      content: "";
+      width: 10px;
+      height: 2px;
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      background-color: var(--orange);
+    }
+    &::after {
+      left: 50%;
+      transform: translate(-50%, -0.5px) rotate(90deg);
+    }
+    &:hover {
+      background-color: var(--orange);
+      &::before,
+      &::after {
+        background-color: #fff;
+      }
+    }
+  }
+  &__price {
+    font-size: 22px;
+    font-weight: var(--bold);
+  }
+  &__delete {
+    position: relative;
+    width: 32px;
+    height: 32px;
+    border: 2px solid #b6b6b4ff;
+    border-radius: 50%;
+    transition: 300ms all ease 0s;
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      width: 10px;
+      height: 2px;
+      background-color: #b6b6b4ff;
+      top: 50%;
+      left: 50%;
+    }
+    &:before {
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+    &:after {
+      transform: translate(-50%, -50%) rotate(-45deg);
+    }
+    &:hover {
+      border: 2px solid #000;
+      background-color: #000;
+      &::before,
+      &::after {
+        background-color: #fff;
+      }
+    }
+  }
+  &__all-count {
+    font-size: 20px;
+    span {
+      font-weight: var(--bold);
+    }
+  }
+  &__all-price {
+    font-size: 20px;
+    span {
+      font-weight: var(--bold);
+      color: var(--orange);
+    }
+  }
+  &__block {
+    display: flex;
+    justify-content: space-around;
+  }
+  &__back {
+    color: #c9c3c0ff;
+    border: 1px solid #c9c3c0ff;
+    padding: 10px 20px 10px 45px;
+    border-radius: 30px;
+    font-weight: var(--bold);
+    display: block;
+    position: relative;
+    font-size: 18px;
+    transition: 300ms all ease 0s;
+    span {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      top: 50%;
+      left: 10px;
+      transform: translate(0, -51%);
+      &:before,
+      &:after {
+        content: "";
+        width: 10px;
+        height: 2px;
+        background-color: #c9c3c0ff;
+        position: absolute;
+        right: 7px;
+      }
+      &::before {
+        top: 60%;
+        transform: translate(0, -50%) rotate(45deg);
+      }
+      &::after {
+        top: 40%;
+        transform: translate(0, -50%) rotate(-45deg);
+      }
+    }
+    &:hover {
+      background-color: #000;
+      color: #fff;
+      span {
+        &::before,
+        &::after {
+          background-color: #fff;
+        }
+      }
+    }
+  }
+
+  &__payment {
+    display: block;
+    font-size: 18px;
+    background-color: var(--orange);
+    color: #fff;
+    padding: 16px;
+    border-radius: 30px;
+  }
+}
