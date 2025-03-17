@@ -8,7 +8,6 @@ const Pizzac = () => {
   const dispatch = useAppDispatch();
   const data = useAppSelector((state) => state.pizza.items);
   const status = useAppSelector((state) => state.pizza.status);
-  console.log(data);
   React.useEffect(() => {
     dispatch(getPizzac());
   }, []);

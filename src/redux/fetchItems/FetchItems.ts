@@ -1,17 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-
-export type TItemsPizza = {
-  id: string;
-  imageUrl: string;
-  name: string;
-  types: number[];
-  sizes: number[];
-  price: number;
-  category: number[];
-  rating: number;
-  count: number;
-};
+import { TItemsPizza } from "../types";
 
 export const getPizzac = createAsyncThunk("items/getPizzac", async () => {
   const { data } = await axios.get(

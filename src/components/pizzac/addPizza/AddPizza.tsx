@@ -1,18 +1,29 @@
 import React from "react";
 import "./addPizza.scss";
+interface AddPizzaProps {
+  totalPrice: number;
+  getPizza: () => void;
+  removeItem: () => void;
+}
 
-const AddPizza = () => {
+const AddPizza: React.FC<AddPizzaProps> = ({
+  totalPrice,
+  getPizza,
+  removeItem,
+}) => {
   return (
     <div className="add-pizza">
       <div className="container">
         <div className="add-pizza__body">
-          <div className="add-pizza__minus">
+          <button className="add-pizza__minus" onClick={() => removeItem()}>
             <span></span>
+          </button>
+          <div className="add-pizza__count" onClick={() => getPizza()}>
+            {totalPrice}
           </div>
-          <div className="add-pizza__count">3</div>
-          <div className="add-pizza__plus">
+          <button className="add-pizza__plus" onClick={() => getPizza()}>
             <span></span>
-          </div>
+          </button>
         </div>
       </div>
     </div>
