@@ -1,6 +1,5 @@
 import React from "react";
 import { TItemsPizza } from "../../redux/getItems/getItems";
-
 const ListPizza: React.FC<TItemsPizza> = ({
   imageUrl,
   name,
@@ -9,6 +8,15 @@ const ListPizza: React.FC<TItemsPizza> = ({
   price,
 }) => {
   const namesTypes = ["традиционное", "тонкое"];
+  const [label, setLabel] = React.useState(-1);
+  const onClickLabel = (idx: number) => {
+    setLabel(idx);
+  };
+
+  const [getSizes, setSizes] = React.useState(-1);
+  const onClickSize = (idx: number) => {
+    setSizes(idx);
+  };
 
   return (
     <div className="pizzac__column">
@@ -17,15 +25,31 @@ const ListPizza: React.FC<TItemsPizza> = ({
       <div className="pizzac__body">
         <div className="pizzac__wrapper">
           {types.map((type, index) => (
-            <div className="pizzac__label" key={index}>
+            <div
+              className={
+                label == index
+                  ? "pizzac__label pizzac__label_active"
+                  : "pizzac__label"
+              }
+              key={index}
+              onClick={() => onClickLabel(index)}
+            >
               {namesTypes[type]}
             </div>
           ))}
         </div>
         <ul className="pizzac__range">
           {sizes.map((size, index) => (
-            <div className="pizzac__size" key={index}>
-              {size}
+            <div
+              className={
+                getSizes == index
+                  ? "pizzac__size pizzac__size_active"
+                  : "pizzac__size"
+              }
+              key={index}
+              onClick={() => onClickSize(index)}
+            >
+              {size} см
             </div>
           ))}
         </ul>
