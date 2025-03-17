@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
-import getItem from "./getItems/getItems";
+import fetchItems from "./fetchItems/FetchItems";
 import { useSelector, TypedUseSelectorHook, useDispatch } from "react-redux";
+import getItems from "./fetchItems/GetItems";
 
 export const store = configureStore({
   reducer: {
-    pizza: getItem,
+    pizza: fetchItems,
+    items: getItems,
   },
 });
 

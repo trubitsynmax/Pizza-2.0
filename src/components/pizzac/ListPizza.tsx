@@ -1,19 +1,42 @@
 import React from "react";
-import { TItemsPizza } from "../../redux/getItems/getItems";
+import { TItemsPizza } from "../../redux/fetchItems/FetchItems";
+import { useAppDispatch } from "../../redux/store";
+import { addItem } from "../../redux/fetchItems/GetItems";
 const ListPizza: React.FC<TItemsPizza> = ({
+  id,
   imageUrl,
   name,
   types,
   sizes,
   price,
+  category,
+  rating,
+  count,
 }) => {
-  const namesTypes = ["традиционное", "тонкое"];
   const [label, setLabel] = React.useState(-1);
+  const [getSizes, setSizes] = React.useState(-1);
+  const dispatch = useAppDispatch();
+  const namesTypes: string[] = ["традиционное", "тонкое"];
+
+  const getPizza = () => {
+    dispatch(
+      addItem({
+        id,
+        imageUrl,
+        name,
+        types,
+        sizes,
+        price,
+        category,
+        rating,
+        count,
+      })
+    );
+  };
+
   const onClickLabel = (idx: number) => {
     setLabel(idx);
   };
-
-  const [getSizes, setSizes] = React.useState(-1);
   const onClickSize = (idx: number) => {
     setSizes(idx);
   };
@@ -56,7 +79,7 @@ const ListPizza: React.FC<TItemsPizza> = ({
       </div>
       <div className="pizzac__item">
         <div className="pizzac__price">от {price} ₽</div>
-        <button className="pizzac__btn">
+        <button className="pizzac__btn" onClick={() => getPizza()}>
           <span>+</span>Добавить
         </button>
       </div>

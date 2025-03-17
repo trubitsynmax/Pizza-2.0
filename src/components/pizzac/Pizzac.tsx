@@ -1,16 +1,16 @@
 import React from "react";
 import { useAppDispatch, useAppSelector } from "../../redux/store";
 import { ListPizza } from "../index";
-import { fetchItems } from "../../redux/getItems/getItems";
 import Skeleton from "./loading/Skeleton";
 import Error from "./error/Error";
+import { getPizzac } from "../../redux/fetchItems/FetchItems";
 const Pizzac = () => {
   const dispatch = useAppDispatch();
   const data = useAppSelector((state) => state.pizza.items);
   const status = useAppSelector((state) => state.pizza.status);
   console.log(data);
   React.useEffect(() => {
-    dispatch(fetchItems());
+    dispatch(getPizzac());
   }, []);
 
   return (

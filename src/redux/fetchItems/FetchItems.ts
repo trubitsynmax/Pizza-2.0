@@ -10,9 +10,10 @@ export type TItemsPizza = {
   price: number;
   category: number[];
   rating: number;
+  count: number;
 };
 
-export const fetchItems = createAsyncThunk("items/fetchItems", async () => {
+export const getPizzac = createAsyncThunk("items/getPizzac", async () => {
   const { data } = await axios.get(
     "https://67d43e67d2c7857431ecfd6a.mockapi.io/Pizzac"
   );
@@ -22,26 +23,27 @@ export const fetchItems = createAsyncThunk("items/fetchItems", async () => {
 const initialState = {
   items: [] as TItemsPizza[],
   status: "pending" as "pending" | "fulfilled" | "rejected",
+  count: 0,
 };
 
-export const getItems = createSlice({
+export const fetchItems = createSlice({
   name: "pizza",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(fetchItems.pending, (state) => {
+    builder.addCase(getPizzac.pending, (state) => {
       state.items = [];
       state.status = "pending";
     });
-    builder.addCase(fetchItems.fulfilled, (state, action) => {
+    builder.addCase(getPizzac.fulfilled, (state, action) => {
       state.items = action.payload;
       state.status = "fulfilled";
     });
-    builder.addCase(fetchItems.rejected, (state) => {
+    builder.addCase(getPizzac.rejected, (state) => {
       state.items = [];
       state.status = "rejected";
     });
   },
 });
 
-export default getItems.reducer;
+export default fetchItems.reducer;
