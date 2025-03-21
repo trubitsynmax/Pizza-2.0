@@ -1,10 +1,31 @@
+import "../style.css";
 import React from "react";
 import logo from "../../assets/image/pizza-logo.svg";
 import basket from "../../assets/image/basket.svg";
-import "../style.css";
 import { Link } from "react-router-dom";
-
+import { selectInput } from "../../redux/InputSort/sortSlice";
+import { useAppDispatch } from "../../redux/store";
+import debounce from "lodash.debounce";
 const Header = () => {
+  const [valueInput, setValueInput] = React.useState("");
+  const inputRef = React.useRef<HTMLInputElement>(null);
+  const dispatch = useAppDispatch();
+  const changeInput = () => {
+    setValueInput("");
+    getValueInput("");
+    inputRef.current?.focus();
+  };
+  const getValueInput = React.useCallback(
+    debounce((str: string) => {
+      dispatch(selectInput(str));
+    }, 500),
+    []
+  );
+  const eventInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setValueInput(event.target.value);
+    getValueInput(event.target.value);
+  };
+
   return (
     <div className="header">
       <div className="container">
@@ -24,12 +45,15 @@ const Header = () => {
           </div>
           <div className="header__column header__column_col2">
             <input
+              ref={inputRef}
+              value={valueInput}
+              onChange={eventInput}
               type="text"
               className="header__input"
               placeholder="Поиск пиццы"
               maxLength={35}
             />
-            <span></span>
+            {valueInput && <span onClick={changeInput}></span>}
           </div>
           <div className="header__column header__column_col3">
             <button className="header__button">

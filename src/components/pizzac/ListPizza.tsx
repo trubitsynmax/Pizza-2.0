@@ -1,8 +1,8 @@
 import React from "react";
 import { TItemsPizza } from "../../redux/types";
 import { useAppDispatch, useAppSelector } from "../../redux/store";
-import { addItem, minusItem } from "../../redux/fetchItems/GetItems";
 import AddPizza from "./addPizza/AddPizza";
+import { addItem, minusItem } from "../../redux/getSetItems/sliceGetItems";
 const ListPizza: React.FC<TItemsPizza> = ({
   id,
   imageUrl,

@@ -1,12 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
-import fetchItems from "./fetchItems/FetchItems";
+import fetchItems from "./getSetItems/sliceFetchItems";
+import getItems from "./getSetItems/sliceGetItems";
 import { useSelector, TypedUseSelectorHook, useDispatch } from "react-redux";
-import getItems from "./fetchItems/GetItems";
+import inputSort from "./InputSort/sortSlice";
 
 export const store = configureStore({
   reducer: {
     pizza: fetchItems,
     items: getItems,
+    input: inputSort,
   },
 });
 

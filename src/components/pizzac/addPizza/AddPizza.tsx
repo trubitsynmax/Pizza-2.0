@@ -13,18 +13,16 @@ const AddPizza: React.FC<AddPizzaProps> = ({
 }) => {
   return (
     <div className="add-pizza">
-      <div className="container">
-        <div className="add-pizza__body">
-          <button className="add-pizza__minus" onClick={() => removeItem()}>
-            <span></span>
-          </button>
-          <div className="add-pizza__count" onClick={() => getPizza()}>
-            {totalPrice}
-          </div>
-          <button className="add-pizza__plus" onClick={() => getPizza()}>
-            <span></span>
-          </button>
+      <div className="add-pizza__body">
+        <button className="add-pizza__minus" onClick={() => removeItem()}>
+          <span></span>
+        </button>
+        <div className="add-pizza__count" onClick={() => getPizza()}>
+          {totalPrice}
         </div>
+        <button className="add-pizza__plus" onClick={() => getPizza()}>
+          <span></span>
+        </button>
       </div>
     </div>
   );
