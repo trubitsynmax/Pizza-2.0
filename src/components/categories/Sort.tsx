@@ -1,6 +1,6 @@
 import React from "react";
 import { TSort } from "./Categories";
-const sortList = [
+export const sortList = [
   { name: "популярности", sortCategory: "rating" },
   { name: "цене", sortCategory: "price" },
   { name: "алфавиту", sortCategory: "name" },

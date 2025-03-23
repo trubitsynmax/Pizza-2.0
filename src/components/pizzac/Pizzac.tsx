@@ -5,8 +5,15 @@ import Skeleton from "./loading/Skeleton";
 import Error from "./error/Error";
 import { getPizzac } from "../../redux/getSetItems/sliceFetchItems";
 import "../css/pizzac.scss";
+import qs from "qs";
+import { useNavigate } from "react-router-dom";
+import { selectFetch } from "../../redux/InputSort/sortSlice";
+import { sortList } from "../categories/Sort";
+
 const Pizzac = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const fisrRender = React.useRef<boolean>(false);
   const data = useAppSelector((state) => state.pizza.items);
   const status = useAppSelector((state) => state.pizza.status);
   const inputValue = useAppSelector((state) => state.sort.inputValue);
@@ -18,9 +25,37 @@ const Pizzac = () => {
   const isCategory = category >= 0 ? `category=${category}` : "";
   const isAscDesc = ascDesc ? `order=asc` : "order=desc";
   const isSort = sort ? `sortBy=${sort.sortCategory}` : "";
+  React.useEffect(() => {
+    if (window.location.search) {
+      const params = qs.parse(window.location.search.substring(1));
+      const filter = Number(params.filter);
+      const order = String(params.order);
+      const sort = sortList.find((obj) => {
+        return obj.sortCategory === params.sort;
+      });
+      if (sort) {
+        dispatch(selectFetch({ filter, order, sort }));
+      }
+    } else {
+      dispatch(getPizzac({ isCategory, isAscDesc, isSort }));
+    }
+  }, []);
+  React.useEffect(() => {
+    if (fisrRender.current) {
+      dispatch(getPizzac({ isCategory, isAscDesc, isSort }));
+    }
+  }, [isCategory, isAscDesc, isSort]);
 
   React.useEffect(() => {
-    dispatch(getPizzac({ isCategory, isAscDesc, isSort }));
+    if (fisrRender.current) {
+      const newUrl = qs.stringify({
+        filter: category,
+        order: ascDesc,
+        sort: sort.sortCategory,
+      });
+      navigate(`?${newUrl}`);
+    }
+    fisrRender.current = true;
   }, [isCategory, isAscDesc, isSort]);
 
   const sortPizza = data
@@ -53,6 +88,3 @@ const Pizzac = () => {
   );
 };
 export default Pizzac;
-
-//{ [...new Array(8)].map((_, index) => <Skeleton key={index} />})
-//sortPizza
