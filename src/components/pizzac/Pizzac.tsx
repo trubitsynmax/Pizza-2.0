@@ -9,10 +9,19 @@ const Pizzac = () => {
   const dispatch = useAppDispatch();
   const data = useAppSelector((state) => state.pizza.items);
   const status = useAppSelector((state) => state.pizza.status);
-  const inputValue = useAppSelector((state) => state.input.inputValue);
+  const inputValue = useAppSelector((state) => state.sort.inputValue);
+
+  const category = useAppSelector((state) => state.sort.categoryId);
+  const sort = useAppSelector((state) => state.sort.sortName);
+  const ascDesc = useAppSelector((state) => state.sort.AscDesc);
+
+  const isCategory = category >= 0 ? `category=${category}` : "";
+  const isAscDesc = ascDesc ? `order=asc` : "order=desc";
+  const isSort = sort ? `sortBy=${sort.sortCategory}` : "";
+
   React.useEffect(() => {
-    dispatch(getPizzac());
-  }, []);
+    dispatch(getPizzac({ isCategory, isAscDesc, isSort }));
+  }, [isCategory, isAscDesc, isSort]);
 
   const sortPizza = data
     .filter((item) => {

@@ -18,6 +18,7 @@
     height: 25px;
     transition: all 500ms ease 0s;
     cursor: pointer;
+    text-alin: center;
     &_active {
       transform: rotate(180deg);
     }
@@ -26,29 +27,28 @@
       content: "";
       position: absolute;
       width: 1px;
-      height: 25px;
-      left: 50%;
+      height: 100%;
+      left: 12.5px;
       top: 0;
-      transform: translate(-50%, 0);
       background-color: #000;
     }
     &::before {
       width: 1.3px;
       height: 13px;
       top: -3px;
-      left: 8.2px;
+      left: 8px;
       transform: rotate(45deg);
     }
     span {
       position: absolute;
       &::before {
         content: "";
-        position: absolute;
         background-color: #000;
+        position: absolute;
         width: 1.3px;
         height: 13px;
         top: -3px;
-        right: -18px;
+        right: -17px;
         transform: rotate(-45deg);
       }
     }

@@ -8,7 +8,7 @@ export const store = configureStore({
   reducer: {
     pizza: fetchItems,
     items: getItems,
-    input: inputSort,
+    sort: inputSort,
   },
 });
 

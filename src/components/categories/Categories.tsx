@@ -1,6 +1,17 @@
 import React from "react";
 import { Sort } from "../index";
 import "../style.css";
+import { useAppDispatch, useAppSelector } from "../../redux/store";
+import {
+  selectAscDesc,
+  selectCategory,
+  selectSort,
+} from "../../redux/InputSort/sortSlice";
+
+export interface TSort {
+  name: string;
+  sortCategory: string;
+}
 
 type TCategory = {
   id: number;
@@ -17,11 +28,21 @@ const listCategory: TCategory = [
 ];
 
 const Categories: React.FC = () => {
-  const [value, setValue] = React.useState(0);
-
+  const dispatch = useAppDispatch();
+  const ascDesc = useAppSelector((state) => state.sort.AscDesc);
+  const categoryId = useAppSelector((state) => state.sort.categoryId);
+  const sort = useAppSelector((state) => state.sort.sortName);
   const getIndex = (idx: number) => {
-    setValue(idx);
+    dispatch(selectCategory(idx));
   };
+  const onAscDesc = () => {
+    dispatch(selectAscDesc(!ascDesc));
+  };
+  const onSelectSort = (value: TSort) => {
+    dispatch(selectSort(value));
+  };
+
+  React.useEffect(() => {}, []);
 
   return (
     <div className="categories">
@@ -33,7 +54,7 @@ const Categories: React.FC = () => {
                 <li
                   key={index}
                   className={
-                    value == item.id
+                    categoryId == item.id
                       ? "categories__item categories__item_active"
                       : "categories__item"
                   }
@@ -45,7 +66,12 @@ const Categories: React.FC = () => {
             </ul>
           </div>
           <div className="categories__column categories__column_big_small">
-            <Sort />
+            <Sort
+              ascDesc={ascDesc}
+              onAscDesc={onAscDesc}
+              sort={sort}
+              onSelectSort={onSelectSort}
+            />
           </div>
         </div>
       </div>

@@ -1,23 +1,28 @@
 import React from "react";
+import { TSort } from "./Categories";
+const sortList = [
+  { name: "популярности", sortCategory: "rating" },
+  { name: "цене", sortCategory: "price" },
+  { name: "алфавиту", sortCategory: "name" },
+];
 
-const sortList = ["популярности", "цене", "алфавиту"];
+interface TFilter {
+  ascDesc: boolean;
+  onAscDesc: () => void;
+  onSelectSort: (value: TSort) => void;
+  sort: TSort;
+}
 
-const Sort = () => {
+const Sort: React.FC<TFilter> = ({
+  ascDesc,
+  onAscDesc,
+  sort,
+  onSelectSort,
+}) => {
   const [activePopup, setActivePopup] = React.useState(false);
-  const [activeItem, setActiveItem] = React.useState(0);
-  const [ascDesc, setAscDesc] = React.useState(true);
-
-  const onClickPopup = () => {
+  const handleClick = (value: TSort) => {
+    onSelectSort(value);
     setActivePopup(!activePopup);
-  };
-
-  const onActiveItem = (idx: number) => {
-    setActiveItem(idx);
-    setActivePopup(!activePopup);
-  };
-
-  const onAscDesc = () => {
-    setAscDesc(!ascDesc);
   };
 
   return (
@@ -29,9 +34,12 @@ const Sort = () => {
         >
           <span></span>
         </div>
-        <div className="sort__body" onClick={onClickPopup}>
+        <div
+          className="sort__body"
+          onClick={() => setActivePopup(!activePopup)}
+        >
           <div className="sort__title">Сортировка по:</div>
-          <div className="sort__subtitle">{sortList[activeItem]}</div>
+          <div className="sort__subtitle">{sort.name}</div>
         </div>
       </div>
       <div
@@ -44,13 +52,13 @@ const Sort = () => {
             <li
               key={index}
               className={
-                activeItem == index
+                sort.sortCategory == item.sortCategory
                   ? "sort__item sort__item_active"
                   : "sort__item"
               }
-              onClick={() => onActiveItem(index)}
+              onClick={() => handleClick(item)}
             >
-              {item}
+              {item.name}
             </li>
           ))}
         </ul>

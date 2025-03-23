@@ -2,12 +2,22 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { TItemsPizza } from "../types";
 
-export const getPizzac = createAsyncThunk("items/getPizzac", async () => {
-  const { data } = await axios.get(
-    "https://67d43e67d2c7857431ecfd6a.mockapi.io/Pizzac"
-  );
-  return data;
-});
+type TLink = {
+  isCategory: string;
+  isAscDesc: string;
+  isSort: string;
+};
+
+export const getPizzac = createAsyncThunk(
+  "items/getPizzac",
+  async (params: TLink) => {
+    const { isCategory, isAscDesc, isSort } = params;
+    const { data } = await axios.get(
+      `https://67d43e67d2c7857431ecfd6a.mockapi.io/Pizzac?${isCategory}&${isAscDesc}&${isSort}`
+    );
+    return data;
+  }
+);
 
 const initialState = {
   items: [] as TItemsPizza[],
