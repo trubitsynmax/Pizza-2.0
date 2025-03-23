@@ -4,7 +4,7 @@ import { ListPizza } from "../index";
 import Skeleton from "./loading/Skeleton";
 import Error from "./error/Error";
 import { getPizzac } from "../../redux/getSetItems/sliceFetchItems";
-
+import "../css/pizzac.scss";
 const Pizzac = () => {
   const dispatch = useAppDispatch();
   const data = useAppSelector((state) => state.pizza.items);
@@ -37,9 +37,15 @@ const Pizzac = () => {
       <div className="container">
         <div className="pizzac__title">Все пиццы</div>
         <div className="skeleton__row">
-          {status == "pending"
-            ? [...new Array(8)].map((_, index) => <Skeleton key={index} />)
-            : sortPizza}
+          {status === "pending" ? (
+            <div className="skeleton__row">
+              {[...new Array(8)].map((_, index) => (
+                <Skeleton key={index} />
+              ))}
+            </div>
+          ) : (
+            <div className="pizzac__row">{sortPizza}</div>
+          )}
         </div>
         {status == "rejected" && <Error />}
       </div>
@@ -47,3 +53,6 @@ const Pizzac = () => {
   );
 };
 export default Pizzac;
+
+//{ [...new Array(8)].map((_, index) => <Skeleton key={index} />})
+//sortPizza

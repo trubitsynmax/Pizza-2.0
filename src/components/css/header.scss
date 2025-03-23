@@ -94,23 +94,24 @@
 
   &__button {
     background-color: var(--orange);
-    width: 130px;
+    width: 150px;
     padding: 15px 0;
     border-radius: 30px;
     display: flex;
-    justify-content: space-around;
     align-items: center;
-    font-size: 17px;
+    font-size: 15px;
     color: #fff;
     font-weight: var(--bold);
+    gap: 10px;
   }
   &__sum {
     position: relative;
+    flex: 0 1 50%;
     &::before {
       content: "";
       position: absolute;
       top: 50%;
-      right: -19px;
+      right: -2.5px;
       transform: translate(0, -50%);
       background-color: rgba(255, 255, 255, 0.6);
       width: 1px;
@@ -118,9 +119,15 @@
     }
   }
   &__count {
+    flex: 0 1 50%;
+    gap: 7px;
+    position: relative;
   }
   &__basket {
-    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 0px;
+    transform: translate(0, -50%);
     margin: 0 5px 0 0;
   }
 }

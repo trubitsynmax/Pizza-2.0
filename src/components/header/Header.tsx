@@ -4,11 +4,13 @@ import logo from "../../assets/image/pizza-logo.svg";
 import basket from "../../assets/image/basket.svg";
 import { Link } from "react-router-dom";
 import { selectInput } from "../../redux/InputSort/sortSlice";
-import { useAppDispatch } from "../../redux/store";
+import { useAppDispatch, useAppSelector } from "../../redux/store";
 import debounce from "lodash.debounce";
 const Header = () => {
   const [valueInput, setValueInput] = React.useState("");
   const inputRef = React.useRef<HTMLInputElement>(null);
+  const countPizza = useAppSelector((state) => state.items.count);
+  const pricePizza = useAppSelector((state) => state.items.totalPrice);
   const dispatch = useAppDispatch();
   const changeInput = () => {
     setValueInput("");
@@ -57,14 +59,14 @@ const Header = () => {
           </div>
           <div className="header__column header__column_col3">
             <button className="header__button">
-              <div className="header__sum">0 ₽</div>
+              <div className="header__sum">{pricePizza} ₽</div>
               <div className="header__count">
                 <img
                   src={basket}
                   alt="Картинка где-то потерялась"
                   className="header__basket"
                 />
-                <span>0</span>
+                <span>{countPizza}</span>
               </div>
             </button>
           </div>
