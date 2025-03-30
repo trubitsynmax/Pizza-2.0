@@ -1,7 +1,6 @@
 import React from "react";
 import { TItemsPizza } from "../../redux/types";
 import { useAppDispatch, useAppSelector } from "../../redux/store";
-import AddPizza from "./addPizza/AddPizza";
 import { addItem, minusItem } from "../../redux/getSetItems/sliceGetItems";
 const ListPizza: React.FC<TItemsPizza> = ({
   id,
@@ -10,17 +9,25 @@ const ListPizza: React.FC<TItemsPizza> = ({
   types,
   sizes,
   price,
-  category,
-  rating,
   count,
 }) => {
-  const [label, setLabel] = React.useState(-1);
+  const [label, setLabel] = React.useState(0);
+  const [getSizes, setSizes] = React.useState(0);
+  const selectItems = useAppSelector((state) => state.items.items);
   const item = useAppSelector((state) => state.items.items);
   const totalPrice: number = item
     .filter((obj) => obj.id == id)
     .reduce((sum, item) => item.count + sum, 0);
 
-  const [getSizes, setSizes] = React.useState(-1);
+  const localItem = selectItems.filter(
+    (obj) => obj.id === id && obj.label === label
+  );
+  const selectItem = React.useMemo(() => {
+    if (!localItem.length) return 0;
+    const item = localItem?.find((item) => item.getSizes == getSizes);
+    return item?.count || 0;
+  }, [localItem, getSizes]);
+
   const dispatch = useAppDispatch();
   const namesTypes: string[] = ["традиционное", "тонкое"];
   const getPizza = (): void => {
@@ -29,18 +36,15 @@ const ListPizza: React.FC<TItemsPizza> = ({
         id,
         imageUrl,
         name,
-        types,
-        sizes,
+        label,
+        getSizes,
         price,
-        category,
-        rating,
         count,
       })
     );
   };
-
   const removeItem = () => {
-    dispatch(minusItem({ id }));
+    dispatch(minusItem({ id, getSizes, label, count }));
   };
 
   const onClickLabel = (idx: number) => {
@@ -82,23 +86,44 @@ const ListPizza: React.FC<TItemsPizza> = ({
               onClick={() => onClickSize(index)}
             >
               {size} см
+              {localItem &&
+                localItem.map((item) =>
+                  item.getSizes == index ? (
+                    <span key={item.id}>{item.count}</span>
+                  ) : null
+                )}
             </div>
           ))}
         </ul>
       </div>
       <div className="pizzac__item">
         <div className="pizzac__price">от {price} ₽</div>
-        {totalPrice > 0 ? (
-          <AddPizza
-            totalPrice={totalPrice}
-            getPizza={getPizza}
-            removeItem={removeItem}
-          />
-        ) : (
-          <button className="pizzac__btn" onClick={() => getPizza()}>
-            <span>+</span>Добавить
+        <div className="pizzac__btn-wrapper">
+          <button
+            className="pizzac__btn"
+            disabled={selectItem < 1}
+            onClick={() => removeItem()}
+          >
+            <span
+              className={
+                totalPrice > 0
+                  ? "pizzac__btn-remove _active"
+                  : "pizzac__btn-remove"
+              }
+            >
+              Удалить
+            </span>
           </button>
-        )}
+          <button className="pizzac__btn" onClick={() => getPizza()}>
+            <span
+              className={
+                totalPrice > 0 ? "pizzac__btn-add _active" : "pizzac__btn-add"
+              }
+            >
+              + Добавить
+            </span>
+          </button>
+        </div>
       </div>
     </div>
   );

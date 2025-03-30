@@ -22,7 +22,6 @@ export const getPizzac = createAsyncThunk(
 const initialState = {
   items: [] as TItemsPizza[],
   status: "pending" as "pending" | "fulfilled" | "rejected",
-  count: 0,
 };
 
 export const fetchItems = createSlice({

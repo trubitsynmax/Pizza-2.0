@@ -13,6 +13,7 @@
   &__column {
     max-width: 350px;
     display: flex;
+    flex: 0 1 33.333%;
     align-items: center;
     flex-direction: column;
   }
@@ -70,6 +71,21 @@
     text-align: center;
     padding: 8px;
     border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    span {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: red;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      font-size: 13px;
+      color: #fff;
+    }
     &_active {
       background-color: #fff;
     }
@@ -79,29 +95,66 @@
     justify-content: space-between;
     width: 100%;
     margin-top: auto;
+    position: relative;
+    overflow: hidden;
   }
   &__price {
     font-size: 26px;
     font-weight: var(--bold);
+    flex: 0 1 40%;
   }
+
+  &__btn-wrapper {
+    display: flex;
+    flex: 0 1 60%;
+    justify-content: flex-end;
+  }
+
   &__btn {
-    color: var(--orange);
     font-size: 16px;
     font-weight: var(--bold);
-    display: flex;
-    align-items: center;
-    border: 1px solid var(--orange);
-    border-radius: 30px;
-    padding: 5px 10px;
-    transition: 300ms all ease 0s;
-    cursor: pointer;
-    &:hover {
-      background-color: var(--orange);
-      color: #fff;
-    }
+    padding: 0;
     span {
-      font-size: 23px;
-      margin: 0 5px 0 0;
+      padding: 5px 10px;
+    }
+
+    &-add {
+      color: var(--orange);
+      border-right: 1px solid var(--orange);
+      border-top: 1px solid var(--orange);
+      border-bottom: 1px solid var(--orange);
+      border-left: 1px solid var(--orange);
+      border-radius: 30px;
+      transition: 300ms all ease 0s;
+      cursor: pointer;
+      &:hover {
+        background-color: var(--orange);
+        color: #fff;
+      }
+      &._active {
+        border-radius: 0px 30px 30px 0;
+        border-left: 0px solid var(--orange);
+      }
+    }
+    &-remove {
+      color: #fff;
+      background-color: red;
+      border-top: 1px solid red;
+      border-bottom: 1px solid red;
+      border-left: 1px solid red;
+      border-radius: 30px 0px 0px 30px;
+      transition: 300ms all ease 0s;
+      position: absolute;
+      top: 50%;
+      right: -100px;
+      transform: translate(0, -50%);
+      &:hover {
+        background-color: #fff;
+        color: red;
+      }
+      &._active {
+        right: 110px;
+      }
     }
   }
 }
