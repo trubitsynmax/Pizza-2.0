@@ -1,8 +1,20 @@
+import { Basket } from "../components/basket/basket";
 import "../components/css/basket.scss";
-import basket from "../assets/image/basket-black.svg";
 import Trash from "../assets/image/Tash";
+import basket from "../assets/image/basket-black.svg";
+import { useAppDispatch, useAppSelector } from "../redux/store";
+import { clearBasket } from "../redux/getSetItems/sliceGetItems";
+import { Link } from "react-router-dom";
 
 const BasktetPage = () => {
+  const items = useAppSelector((state) => state.items.items);
+  const totalCount = useAppSelector((state) => state.items.count);
+  const totalPrice = useAppSelector((state) => state.items.totalPrice);
+  const dispatch = useAppDispatch();
+
+  const clearItems = () => {
+    dispatch(clearBasket());
+  };
   return (
     <div className="basket">
       <div className="container">
@@ -17,36 +29,27 @@ const BasktetPage = () => {
           </div>
           <div className="basket__clear">
             <Trash className={"basket__picture basket__picture_small"} />
-            <div className="basket__text-clear">Очистить корзину</div>
+            <div className="basket__text-clear" onClick={clearItems}>
+              Очистить корзину
+            </div>
           </div>
         </div>
-        <div className="basket__wrapper">
-          <img src="123" alt="" className="basket__image" />
-          <div className="basket__body">
-            <div className="basket__sub-title">Кисло-сладкий цыпленок</div>
-            <div className="basket__label">тонкое, 26 см.</div>
-          </div>
-          <div className="basket__row">
-            <button className="basket__minus"></button>
-            <div className="basket__count">2</div>
-            <button className="basket__plus"></button>
-          </div>
-          <div className="basket__price">0 ₽</div>
-          <button className="basket__delete"></button>
-        </div>
+        {items.map((item, idx) => (
+          <Basket {...item} key={idx} />
+        ))}
         <div className="basket__items">
           <div className="basket__all-count">
-            Всего пицц: <span>2 шт.</span>
+            Всего пицц: <span>{totalCount} шт.</span>
           </div>
           <div className="basket__all-price">
-            Сумма заказа: <span>408₽</span>
+            Сумма заказа: <span>{totalPrice}₽</span>
           </div>
         </div>
         <div className="basket__block">
-          <button className="basket__back">
+          <Link to="/" className="basket__back">
             <span></span>
             Вернуться назад
-          </button>
+          </Link>
           <button className="basket__payment">Оплатить сейчас</button>
         </div>
       </div>

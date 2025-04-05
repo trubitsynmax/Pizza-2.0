@@ -58,7 +58,7 @@ const Header = () => {
             {valueInput && <span onClick={changeInput}></span>}
           </div>
           <div className="header__column header__column_col3">
-            <button className="header__button">
+            <Link to="basket" className="header__button">
               <div className="header__sum">{pricePizza} ₽</div>
               <div className="header__count">
                 <img
@@ -68,7 +68,7 @@ const Header = () => {
                 />
                 <span>{countPizza}</span>
               </div>
-            </button>
+            </Link>
           </div>
         </div>
       </div>

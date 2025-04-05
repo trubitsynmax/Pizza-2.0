@@ -98,8 +98,8 @@
     padding: 15px 0;
     border-radius: 30px;
     display: flex;
+    justify-content: center;
     align-items: center;
-    font-size: 15px;
     color: #fff;
     font-weight: var(--bold);
     gap: 10px;
@@ -107,6 +107,7 @@
   &__sum {
     position: relative;
     flex: 0 1 50%;
+    text-align: center;
     &::before {
       content: "";
       position: absolute;
@@ -119,9 +120,10 @@
     }
   }
   &__count {
-    flex: 0 1 50%;
     gap: 7px;
     position: relative;
+    flex: 0 1 50%;
+    text-align: center;
   }
   &__basket {
     position: absolute;

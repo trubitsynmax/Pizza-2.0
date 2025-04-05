@@ -2,6 +2,7 @@ import React from "react";
 import { TItemsPizza } from "../../redux/types";
 import { useAppDispatch, useAppSelector } from "../../redux/store";
 import { addItem, minusItem } from "../../redux/getSetItems/sliceGetItems";
+export const namesTypes: string[] = ["традиционное", "тонкое"];
 const ListPizza: React.FC<TItemsPizza> = ({
   id,
   imageUrl,
@@ -29,7 +30,6 @@ const ListPizza: React.FC<TItemsPizza> = ({
   }, [localItem, getSizes]);
 
   const dispatch = useAppDispatch();
-  const namesTypes: string[] = ["традиционное", "тонкое"];
   const getPizza = (): void => {
     dispatch(
       addItem({
@@ -37,7 +37,7 @@ const ListPizza: React.FC<TItemsPizza> = ({
         imageUrl,
         name,
         label,
-        getSizes,
+        getSizes: sizes[getSizes],
         price,
         count,
       })

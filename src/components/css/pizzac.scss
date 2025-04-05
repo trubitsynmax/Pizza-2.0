@@ -115,7 +115,8 @@
     font-weight: var(--bold);
     padding: 0;
     span {
-      padding: 5px 10px;
+      display: block;
+      padding: 5px 15px;
     }
 
     &-add {
@@ -153,7 +154,7 @@
         color: red;
       }
       &._active {
-        right: 110px;
+        right: 120px;
       }
     }
   }

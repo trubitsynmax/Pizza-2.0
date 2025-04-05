@@ -61,19 +61,22 @@ export const getItems = createSlice({
         return item.price * item.count + sum;
       }, 0);
     },
-    // selectItem(state, action: PayloadAction<getOneItem>) {
-    //   const findItem = state.items.find(
-    //     (obj) =>
-    //       obj.id === action.payload.id &&
-    //       obj.getSizes === action.payload.getSizes &&
-    //       obj.label === action.payload.label
-    //   );
-    //   if (findItem) {
-    //     state.localCount = findItem.count;
-    //   }
-    // },
+    clearBasket(state) {
+      state.items = [];
+      state.totalPrice = 0;
+      state.count = 0;
+    },
+    deleteGroupItems(state, action: PayloadAction<getOneItem>) {
+      state.items = state.items.filter(
+        (obj) =>
+          obj.id !== action.payload.id ||
+          obj.label !== action.payload.label ||
+          obj.getSizes !== action.payload.getSizes
+      );
+    },
   },
 });
 
-export const { addItem, minusItem } = getItems.actions;
+export const { addItem, minusItem, clearBasket, deleteGroupItems } =
+  getItems.actions;
 export default getItems.reducer;
