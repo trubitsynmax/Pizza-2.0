@@ -8,6 +8,14 @@ export type TItemsPizza = {
   category: number[];
   rating: number;
   count: number;
+  info: {
+    caloric: number;
+    proteins: number;
+    fats: number;
+    carbohyd: number;
+    fiber: number;
+    water: number;
+  };
 };
 
 export type TItemSelectionPizza = {

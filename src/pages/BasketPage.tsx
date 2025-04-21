@@ -1,10 +1,11 @@
-import { Basket } from "../components/basket/basket";
 import "../components/css/basket.scss";
 import Trash from "../assets/image/Tash";
 import basket from "../assets/image/basket-black.svg";
 import { useAppDispatch, useAppSelector } from "../redux/store";
 import { clearBasket } from "../redux/getSetItems/sliceGetItems";
 import { Link } from "react-router-dom";
+import { Empty } from "../components";
+import { Basket } from "../components/basket/Basket";
 
 const BasktetPage = () => {
   const items = useAppSelector((state) => state.items.items);
@@ -15,7 +16,7 @@ const BasktetPage = () => {
   const clearItems = () => {
     dispatch(clearBasket());
   };
-  return (
+  return items.length > 0 ? (
     <div className="basket">
       <div className="container">
         <div className="basket__items basket__items_header">
@@ -54,6 +55,8 @@ const BasktetPage = () => {
         </div>
       </div>
     </div>
+  ) : (
+    <Empty />
   );
 };
 export default BasktetPage;

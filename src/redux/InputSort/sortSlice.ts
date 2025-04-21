@@ -29,7 +29,7 @@ export const inputSort = createSlice({
     selectCategory(state, action) {
       state.categoryId = action.payload;
     },
-    selectAscDesc(state, action: PayloadAction<string>) {
+    selectAscDesc(state, action: PayloadAction<boolean>) {
       state.AscDesc = Boolean(action.payload);
     },
     selectSort(state, action) {

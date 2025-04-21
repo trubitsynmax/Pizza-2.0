@@ -62,7 +62,9 @@
   &__body {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 10px;
+    width: 100%;
     p {
       span {
         font-weight: var(--bold);
@@ -73,6 +75,12 @@
       color: var(--gray);
       line-height: 18px;
     }
+  }
+
+  &__wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
   }
 
   //header input
@@ -176,6 +184,11 @@
       border-radius: 25px;
       font-size: 14px;
     }
+    &__sum {
+      &::before {
+        left: 107%;
+      }
+    }
     &__count {
       img {
         width: 15px;
@@ -225,7 +238,7 @@
     }
     &__sum {
       &::before {
-        right: -22px;
+        left: 100%;
       }
     }
   }

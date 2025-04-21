@@ -32,7 +32,18 @@ export const Basket: React.FC<TItemSelectionPizza> = ({
     <>
       <div className="basket__wrapper">
         <div className="basket__column">
-          <img src={imageUrl} alt="" className="basket__image" />
+          <div className="basket__section">
+            <img
+              src={imageUrl}
+              alt=""
+              className="basket__image"
+              onClick={deleteGroup}
+            />
+            <button
+              className="basket__delete-section"
+              onClick={deleteGroup}
+            ></button>
+          </div>
           <div className="basket__body">
             <div className="basket__sub-title">{name}</div>
             <div className="basket__label">

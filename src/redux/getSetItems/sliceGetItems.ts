@@ -7,8 +7,29 @@ type getOneItem = {
   label: number;
 };
 
+export type changeItem = {
+  id: string;
+  imageUrl: string;
+  name: string;
+  label: number;
+  getSizes: number;
+  price: number;
+  count: number;
+  info: {
+    caloric: number;
+    proteins: number;
+    fats: number;
+    carbohyd: number;
+    fiber: number;
+    water: number;
+  };
+};
+
+export type getChangeItem = changeItem | null;
+
 const initialState = {
   items: [] as TItemSelectionPizza[],
+  changeItem: {} as getChangeItem,
   count: 0,
   totalPrice: 0,
   localCount: 0,
@@ -73,10 +94,28 @@ export const getItems = createSlice({
           obj.label !== action.payload.label ||
           obj.getSizes !== action.payload.getSizes
       );
+      state.count = state.items.reduce((sum, item) => {
+        return item.count + sum;
+      }, 0);
+      state.totalPrice = state.items.reduce((sum, item) => {
+        return item.price * item.count + sum;
+      }, 0);
+    },
+    getChangeItem(state, action: PayloadAction<getChangeItem>) {
+      state.changeItem = action.payload;
+    },
+    closePopup(state) {
+      state.changeItem = null;
     },
   },
 });
 
-export const { addItem, minusItem, clearBasket, deleteGroupItems } =
-  getItems.actions;
+export const {
+  addItem,
+  minusItem,
+  clearBasket,
+  deleteGroupItems,
+  getChangeItem,
+  closePopup,
+} = getItems.actions;
 export default getItems.reducer;

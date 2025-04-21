@@ -1,9 +1,33 @@
 import React from "react";
-import { TItemsPizza } from "../../redux/types";
 import { useAppDispatch, useAppSelector } from "../../redux/store";
-import { addItem, minusItem } from "../../redux/getSetItems/sliceGetItems";
+import {
+  addItem,
+  getChangeItem,
+  minusItem,
+} from "../../redux/getSetItems/sliceGetItems";
 export const namesTypes: string[] = ["традиционное", "тонкое"];
-const ListPizza: React.FC<TItemsPizza> = ({
+
+export type FullInfo = {
+  id: string;
+  imageUrl: string;
+  name: string;
+  types: number[];
+  sizes: number[];
+  price: number;
+  category: number[];
+  rating: number;
+  count: number;
+  info: {
+    caloric: number;
+    proteins: number;
+    fats: number;
+    carbohyd: number;
+    fiber: number;
+    water: number;
+  };
+};
+
+const ListPizza: React.FC<FullInfo> = ({
   id,
   imageUrl,
   name,
@@ -11,6 +35,7 @@ const ListPizza: React.FC<TItemsPizza> = ({
   sizes,
   price,
   count,
+  info,
 }) => {
   const [label, setLabel] = React.useState(0);
   const [getSizes, setSizes] = React.useState(0);
@@ -25,10 +50,9 @@ const ListPizza: React.FC<TItemsPizza> = ({
   );
   const selectItem = React.useMemo(() => {
     if (!localItem.length) return 0;
-    const item = localItem?.find((item) => item.getSizes == getSizes);
-    return item?.count || 0;
+    const items = localItem?.find((item) => item.getSizes == sizes[getSizes]);
+    return items?.count || 0;
   }, [localItem, getSizes]);
-
   const dispatch = useAppDispatch();
   const getPizza = (): void => {
     dispatch(
@@ -44,7 +68,7 @@ const ListPizza: React.FC<TItemsPizza> = ({
     );
   };
   const removeItem = () => {
-    dispatch(minusItem({ id, getSizes, label, count }));
+    dispatch(minusItem({ id, getSizes: sizes[getSizes], label, count }));
   };
 
   const onClickLabel = (idx: number) => {
@@ -54,9 +78,29 @@ const ListPizza: React.FC<TItemsPizza> = ({
     setSizes(idx);
   };
 
+  const onClickPopup = () => {
+    dispatch(
+      getChangeItem({
+        id,
+        imageUrl,
+        name,
+        label,
+        getSizes: sizes[getSizes],
+        price,
+        count,
+        info,
+      })
+    );
+  };
+
   return (
     <div className="pizzac__column">
-      <img src={imageUrl} alt="" className="pizzac__image" />
+      <img
+        src={imageUrl}
+        alt=""
+        className="pizzac__image"
+        onClick={() => onClickPopup()}
+      />
       <div className="pizzac__sub-title">{name}</div>
       <div className="pizzac__body">
         <div className="pizzac__wrapper">
@@ -88,7 +132,7 @@ const ListPizza: React.FC<TItemsPizza> = ({
               {size} см
               {localItem &&
                 localItem.map((item) =>
-                  item.getSizes == index ? (
+                  item.getSizes == sizes[index] ? (
                     <span key={item.id}>{item.count}</span>
                   ) : null
                 )}
