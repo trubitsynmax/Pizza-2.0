@@ -53,7 +53,7 @@ const Popup: React.FC<changeItem> = ({
               <span onClick={close}></span>
               <div className="popup__column">
                 <div className="popup__image">
-                  <img src={Image} alt="Пицца где-то потерялась 😔" />
+                  <img src={imageUrl} alt="Пицца где-то потерялась 😔" />
                 </div>
               </div>
               <ul className="popup__column">
