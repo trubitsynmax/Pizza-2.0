@@ -1,9 +1,9 @@
-import React from "react";
-import { Categories, Pizzac, Popup } from "../components/index";
-import { useAppSelector } from "../redux/store";
-
+import { Categories, Pizzac, Popup } from "../components/index"; //!custom component
+import { useAppSelector } from "../redux/store"; //!redux component
+import { SelectUserFilter } from "../components/index"; //!slice input slice
 export default function HomePage() {
   const changeItem = useAppSelector((state) => state.items.changeItem);
+  SelectUserFilter();
   return (
     <div>
       <Categories />

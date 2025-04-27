@@ -1,38 +1,43 @@
 import {
   addItem,
   deleteGroupItems,
-  minusItem,
-} from "../../redux/getSetItems/sliceGetItems";
-import { useAppDispatch } from "../../redux/store";
-import "../css/basket.scss";
-import { namesTypes } from "../pizzac/ListPizza";
-import { TItemSelectionPizza } from "../../redux/types";
+  removeItem,
+} from "../../redux/items/sliceItems"; //!custom slices
+import { useAppDispatch } from "../../redux/store"; //!dispatch
+import { namesTypes } from "../categories/data"; //!['традиционное', 'тонкое']
+import "../css/basket.scss"; //!css
+import { TPlusItem } from "../types/types"; //!types
 
-export const Basket: React.FC<TItemSelectionPizza> = ({
+const Basket: React.FC<TPlusItem> = ({
   id,
   imageUrl,
   name,
-  label,
+  typesPizza,
   getSizes,
   price,
   count,
 }) => {
+  //*redux
   const dispatch = useAppDispatch();
 
-  const plusItems = () => {
-    dispatch(addItem({ id, imageUrl, name, label, getSizes, price, count }));
+  const plusItem = () => {
+    dispatch(
+      addItem({ id, imageUrl, name, typesPizza, getSizes, price, count })
+    );
   };
-  const minusItems = () => {
-    dispatch(minusItem({ id, label, getSizes, count }));
+  const minusItem = () => {
+    dispatch(removeItem({ id, typesPizza, getSizes, count }));
   };
   const deleteGroup = () => {
-    dispatch(deleteGroupItems({ id, label, getSizes }));
+    dispatch(deleteGroupItems({ id, typesPizza, getSizes }));
   };
+
+  //*ui
   return (
     <>
       <div className="basket__wrapper">
-        <div className="basket__column">
-          <div className="basket__section">
+        <div className="basket__card">
+          <div className="basket__image-section">
             <img
               src={imageUrl}
               alt=""
@@ -40,25 +45,30 @@ export const Basket: React.FC<TItemSelectionPizza> = ({
               onClick={deleteGroup}
             />
             <button
-              className="basket__delete-section"
+              className="basket__delete-group-image"
               onClick={deleteGroup}
             ></button>
           </div>
-          <div className="basket__body">
+          <div className="basket__info-section">
             <div className="basket__sub-title">{name}</div>
             <div className="basket__label">
-              {namesTypes[label]}, {getSizes} см.
+              {namesTypes[typesPizza]}, {getSizes} см.
             </div>
           </div>
-          <div className="basket__row">
-            <button className="basket__minus" onClick={minusItems}></button>
+          <div className="basket__buttons-section">
+            <button className="basket__minus" onClick={minusItem}></button>
             <div className="basket__count">{count}</div>
-            <button className="basket__plus" onClick={plusItems}></button>
+            <button className="basket__plus" onClick={plusItem}></button>
           </div>
           <div className="basket__price">{price * count} ₽</div>
-          <button className="basket__delete" onClick={deleteGroup}></button>
+          <button
+            className="basket__delete-group"
+            onClick={deleteGroup}
+          ></button>
         </div>
       </div>
     </>
   );
 };
+
+export default Basket;

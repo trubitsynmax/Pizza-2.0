@@ -1,39 +1,29 @@
-import React from "react";
-import { TSort } from "./Categories";
-export const sortList = [
-  { name: "популярности", sortCategory: "rating" },
-  { name: "цене", sortCategory: "price" },
-  { name: "алфавиту", sortCategory: "name" },
-];
+import React from "react"; //!react component
+import { ISortList, IFilters } from "../types/types"; //!types
+import { sortList } from "./data"; //!sort data
+import arrow from "../../assets/image/arrowAscDesc.png";
 
-interface TFilter {
-  ascDesc: boolean;
-  onAscDesc: () => void;
-  onSelectSort: (value: TSort) => void;
-  sort: TSort;
-}
-
-const Sort: React.FC<TFilter> = ({
+const Sort: React.FC<IFilters> = ({
   ascDesc,
-  onAscDesc,
+  getAscOrDesc,
   sort,
-  onSelectSort,
+  getSelectSort,
 }) => {
   const [activePopup, setActivePopup] = React.useState(false);
-  const handleClick = (value: TSort) => {
-    onSelectSort(value);
+  const selectSort = (value: ISortList) => {
+    getSelectSort(value);
     setActivePopup(!activePopup);
   };
 
   return (
     <div className="sort">
       <div className="sort__row">
-        <div
+        <img
+          src={arrow}
+          alt="Иконка поиска больше/меньше пропала"
           className={ascDesc ? "sort__arrow" : "sort__arrow sort__arrow_active"}
-          onClick={onAscDesc}
-        >
-          <span></span>
-        </div>
+          onClick={getAscOrDesc}
+        />
         <div
           className="sort__body"
           onClick={() => setActivePopup(!activePopup)}
@@ -56,7 +46,7 @@ const Sort: React.FC<TFilter> = ({
                   ? "sort__item sort__item_active"
                   : "sort__item"
               }
-              onClick={() => handleClick(item)}
+              onClick={() => selectSort(item)}
             >
               {item.name}
             </li>

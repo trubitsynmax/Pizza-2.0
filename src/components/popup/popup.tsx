@@ -1,26 +1,22 @@
-import {
-  addItem,
-  closePopup,
-  changeItem,
-  minusItem,
-} from "../../redux/getSetItems/sliceGetItems";
-import { useAppDispatch, useAppSelector } from "../../redux/store";
-import Image from "../../assets/image/01.png";
-import "../css/popup.scss";
-import React from "react";
+import { addItem, closePopup, removeItem } from "../../redux/items/sliceItems"; //!slice add items, close popup & remove items
+import { useAppDispatch, useAppSelector } from "../../redux/store"; //!redux selector/dispatch
+import { TPlusItem } from "../types/types"; //!type
+import "../style.css"; //!css
+import React from "react"; //!react components
 
-const Popup: React.FC<changeItem> = ({
+const Popup: React.FC<TPlusItem> = ({
   id,
   name,
   imageUrl,
   getSizes,
   price,
-  label,
+  typesPizza,
   count,
 }) => {
   const dispatch = useAppDispatch();
   const changeItem = useAppSelector((state) => state.items.changeItem);
-  const close = (e: React.MouseEvent<HTMLDivElement>) => {
+
+  const onClosePopup = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target == e.currentTarget) {
       dispatch(closePopup());
     }
@@ -38,55 +34,61 @@ const Popup: React.FC<changeItem> = ({
     };
   }, [changeItem?.id]);
 
-  const add = () => {
-    dispatch(addItem({ id, imageUrl, name, label, getSizes, price, count }));
+  const addSelectPizza = () => {
+    dispatch(
+      addItem({ id, imageUrl, name, typesPizza, getSizes, price, count })
+    );
   };
-  const remove = () => {
-    dispatch(minusItem({ id, getSizes: getSizes, label, count }));
+  const removeSelectPizza = () => {
+    dispatch(removeItem({ id, getSizes: getSizes, typesPizza, count }));
   };
   return (
     <>
-      {changeItem?.id ? (
-        <div className="popup _active" onClick={close}>
+      {changeItem?.id && (
+        <div className="popup" onClick={onClosePopup}>
           <div className="popup__container">
             <div className="popup__row">
-              <span onClick={close}></span>
-              <div className="popup__column">
+              <span onClick={onClosePopup}></span>
+              <div className="popup__column popup__column_col1">
                 <div className="popup__image">
                   <img src={imageUrl} alt="Пицца где-то потерялась 😔" />
                 </div>
               </div>
               <ul className="popup__column">
-                <li className="popup__caloric">
+                <li className="popup__text">
                   Калорийность: {changeItem.info?.caloric} ккал
                 </li>
-                <li className="popup__proteins">
+                <li className="popup__text">
                   Белки: {changeItem.info?.proteins} г
                 </li>
-                <li className="popup__fats">Жиры: {changeItem.info?.fats} г</li>
-                <li className="popup__carbohyd">
+                <li className="popup__text">Жиры: {changeItem.info?.fats} г</li>
+                <li className="popup__text">
                   Углеводы: {changeItem.info?.carbohyd} г
                 </li>
-                <li className="popup__fiber">
+                <li className="popup__text">
                   Пищевые волокна: {changeItem.info?.fiber} г
                 </li>
-                <li className="popup__water">
+                <li className="popup__text">
                   Вода: {changeItem.info?.water} г
                 </li>
               </ul>
             </div>
             <div className="popup__items">
-              <button className="popup__button-remove" onClick={() => remove()}>
+              <button
+                className="popup__button-remove"
+                onClick={() => removeSelectPizza()}
+              >
                 Удалить
               </button>
-              <button className="popup__button-add" onClick={() => add()}>
+              <button
+                className="popup__button-add"
+                onClick={() => addSelectPizza()}
+              >
                 Добавить
               </button>
             </div>
           </div>
         </div>
-      ) : (
-        <div className="popup"></div>
       )}
     </>
   );

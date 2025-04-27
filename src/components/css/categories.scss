@@ -1,20 +1,32 @@
 .categories {
   margin: 0 0 25px 0;
+  //*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+  //*wrappers
   &__row {
     display: flex;
     justify-content: space-between;
-    align-items: center;
     flex-wrap: wrap;
+    align-items: center;
     gap: 25px;
   }
   &__column {
     &_big {
       flex: 0 1 70%;
     }
-    &_small {
-      flex: 0 1 20%;
-    }
   }
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(6, auto);
+    grid-template-rows: auto;
+    gap: 10px;
+    text-align: center;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  //*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+  //*text
   &__item {
     padding: 13px 30px;
     background-color: #f9f9f6ff;
@@ -25,21 +37,24 @@
       color: #fff;
     }
   }
-  &__list {
-    display: grid;
-    grid-template-columns: repeat(6, auto);
-    grid-template-rows: auto;
-    gap: 10px;
-    align-items: center;
-    text-align: center;
-    cursor: pointer;
-  }
+
+  //*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1130px) {
   .categories {
     &__item {
       padding: 10px 15px;
+    }
+    &__list {
+      font-size: 16px;
+    }
+  }
+}
+@media (max-width: 940px) {
+  .categories {
+    &__item {
+      padding: 5px;
     }
   }
 }

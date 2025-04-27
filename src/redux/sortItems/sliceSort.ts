@@ -1,17 +1,9 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-type fetchUrl = {
-  filter: number;
-  order: string;
-  sort: {
-    name: string;
-    sortCategory: string;
-  };
-};
+import { createSlice, PayloadAction } from "@reduxjs/toolkit"; //!redux components
+import { TSelectUrlFilter } from "../../components/types/types"; //!types
 
 const initialState = {
   inputValue: "",
-  categoryId: 0,
+  listCategoryId: 0,
   AscDesc: true,
   sortName: {
     name: "популярности",
@@ -23,20 +15,25 @@ export const inputSort = createSlice({
   name: "sort",
   initialState,
   reducers: {
+    //!gets user input values
     selectInput(state, action: PayloadAction<string>) {
       state.inputValue = action.payload;
     },
+    //!gets the selected category
     selectCategory(state, action) {
-      state.categoryId = action.payload;
+      state.listCategoryId = action.payload;
     },
+    //!gets the selected sort (asc or desc)
     selectAscDesc(state, action: PayloadAction<boolean>) {
       state.AscDesc = Boolean(action.payload);
     },
+    //!gets the selected sort
     selectSort(state, action) {
       state.sortName = action.payload;
     },
-    selectFetch(state, action: PayloadAction<fetchUrl>) {
-      state.categoryId = action.payload.filter;
+    //!sends in url filter info
+    selectUrl(state, action: PayloadAction<TSelectUrlFilter>) {
+      state.listCategoryId = action.payload.filter;
       if (action.payload.order == "true") {
         state.AscDesc = true;
       } else {
@@ -52,6 +49,6 @@ export const {
   selectCategory,
   selectAscDesc,
   selectSort,
-  selectFetch,
+  selectUrl,
 } = inputSort.actions;
 export default inputSort.reducer;

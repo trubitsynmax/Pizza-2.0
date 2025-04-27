@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
-import empty from "../../assets/image/empty.png";
-import "../css/empty.scss";
+import { Link } from "react-router-dom"; //!Link component
+import EmptyImage from "../../assets/image/empty.png"; //!image empty
+import "../style.css"; //!css
 const Empty = () => {
   return (
     <div className="empty">
@@ -9,9 +9,9 @@ const Empty = () => {
           Корзина пуста, нужно добавить что-либо, чтобы получилось сделать заказ
         </div>
         <div className="empty__image">
-          <img src={empty} alt="" />
+          <img src={EmptyImage} alt="" />
         </div>
-        <Link to="/" className="empty__button">
+        <Link to="/" className="empty__button-back">
           Назад
         </Link>
       </div>

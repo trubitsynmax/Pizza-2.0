@@ -1,19 +1,20 @@
-import "../style.css";
-import React from "react";
-import logo from "../../assets/image/pizza-logo.svg";
-import basket from "../../assets/image/basket.svg";
-import { Link, useLocation } from "react-router-dom";
-import { selectInput } from "../../redux/InputSort/sortSlice";
-import { useAppDispatch, useAppSelector } from "../../redux/store";
-import debounce from "lodash.debounce";
+import "../style.css"; //!css
+import React from "react"; //!react component
+import logo from "../../assets/image/pizza-logo.svg"; //!logo svg
+import basket from "../../assets/image/basket.svg"; //!basket svg
+import { Link, useLocation } from "react-router-dom"; //!react router component
+import { selectInput } from "../../redux/sortItems/sliceSort"; //!slice input
+import { useAppDispatch, useAppSelector } from "../../redux/store"; //!redux dispatch/selector
+import debounce from "lodash.debounce"; //!debounce
+
 const Header = () => {
   const [valueInput, setValueInput] = React.useState("");
   const url = useLocation();
   const inputRef = React.useRef<HTMLInputElement>(null);
-  const countPizza = useAppSelector((state) => state.items.count);
-  const pricePizza = useAppSelector((state) => state.items.totalPrice);
+  const amountPizzas = useAppSelector((state) => state.items.count);
+  const pricePizzas = useAppSelector((state) => state.items.totalPrice);
   const dispatch = useAppDispatch();
-  const changeInput = () => {
+  const clearInput = () => {
     setValueInput("");
     getValueInput("");
     inputRef.current?.focus();
@@ -24,7 +25,7 @@ const Header = () => {
     }, 500),
     []
   );
-  const eventInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const getUsersValueInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValueInput(event.target.value);
     getValueInput(event.target.value);
   };
@@ -33,8 +34,8 @@ const Header = () => {
       <div className="container">
         {url.pathname == "/" ? (
           <div className="header__row">
-            <div className="header__column header__column_col1">
-              <Link to="/" className="header__body">
+            <div className="header__column">
+              <Link to="/" className="header__link">
                 <img
                   src={logo}
                   alt="Картинка где-то потерялась"
@@ -50,31 +51,31 @@ const Header = () => {
               <input
                 ref={inputRef}
                 value={valueInput}
-                onChange={eventInput}
+                onChange={getUsersValueInput}
                 type="text"
                 className="header__input"
                 placeholder="Поиск пиццы"
                 maxLength={35}
               />
-              {valueInput && <span onClick={changeInput}></span>}
+              {valueInput && <span onClick={clearInput}></span>}
             </div>
             <div className="header__column header__column_col3">
               <Link to="basket" className="header__button">
-                <div className="header__sum">{pricePizza} ₽</div>
+                <div className="header__sum">{pricePizzas} ₽</div>
                 <div className="header__count">
                   <img
                     src={basket}
                     alt="Картинка где-то потерялась"
                     className="header__basket"
                   />
-                  <span>{countPizza}</span>
+                  <span>{amountPizzas}</span>
                 </div>
               </Link>
             </div>
           </div>
         ) : (
           <div className="header__wrapper">
-            <Link to="/" className="header__body">
+            <Link to="/" className="header__link">
               <img
                 src={logo}
                 alt="Картинка где-то потерялась"

@@ -1,10 +1,12 @@
 /* Первичные настройки и обнуляющий стиль */
 @import "./css/header.scss";
 @import "./css/categories.scss";
+@import "./css/empty.scss";
 @import "./css/sort.scss";
 @import "./css/pizzac.scss";
 @import "./css/notfound.scss";
-@import "./css//basket.scss";
+@import "./css/basket.scss";
+@import "./css/popup.scss";
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap");
 
@@ -25,6 +27,13 @@ body {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  background-color: #fddf84ff;
+  font-family: var(--family);
+  margin: 0 30px;
+  overflow: auto;
+}
+body.close {
+  overflow: hidden;
 }
 button {
   background-color: transparent;
@@ -43,12 +52,6 @@ a {
 }
 
 /* ------------------------------------------------------------- */
-
-body {
-  background-color: #fddf84ff;
-  font-family: var(--family);
-  margin: 0 30px;
-}
 
 .wrapper {
   max-width: 1400px;

@@ -1,16 +1,10 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
-import { TItemsPizza } from "../types";
-
-type TLink = {
-  isCategory: string;
-  isAscDesc: string;
-  isSort: string;
-};
-
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"; //!redux components
+import axios from "axios"; //!axios
+import { TFullItems, TUrlFilter } from "../../components/types/types"; //!types
 export const getPizzac = createAsyncThunk(
   "items/getPizzac",
-  async (params: TLink) => {
+  async (params: TUrlFilter) => {
+    //!isCategory - сырная, мясная и т.д.; isAscDesc - asc or desc sort; isSort - сортировка по: цене, алфавиту и т.д.
     const { isCategory, isAscDesc, isSort } = params;
     const { data } = await axios.get(
       `https://67d43e67d2c7857431ecfd6a.mockapi.io/Pizzac?${isCategory}&${isAscDesc}&${isSort}`
@@ -20,7 +14,7 @@ export const getPizzac = createAsyncThunk(
 );
 
 const initialState = {
-  items: [] as TItemsPizza[],
+  items: [] as TFullItems[],
   status: "pending" as "pending" | "fulfilled" | "rejected",
 };
 

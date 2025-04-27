@@ -1,0 +1,75 @@
+import { createSlice, PayloadAction } from "@reduxjs/toolkit"; //!redux components
+import {
+  TSelectItem,
+  TOnlyOneItem,
+  TMinusItem,
+  TPlusItem,
+} from "../../components/types/types"; //!types
+import { findTrueItem, multiplication, plus, findFalseItem } from "./sliceData"; //!function for slice function
+
+const initialState = {
+  items: [] as TPlusItem[],
+  changeItem: {} as TSelectItem,
+  count: 0,
+  totalPrice: 0,
+  localCount: 0,
+};
+
+export const getItems = createSlice({
+  name: "items",
+  initialState,
+  reducers: {
+    //!add items in store
+    addItem(state, action: PayloadAction<TPlusItem>) {
+      const findItem = findTrueItem(state.items, action.payload);
+      if (findItem) {
+        findItem.count++;
+      } else {
+        state.items.push({ ...action.payload, count: 1 });
+      }
+      state.count = plus(state.items);
+      state.totalPrice = multiplication(state.items);
+    },
+    //!remove item in store
+    removeItem(state, action: PayloadAction<TMinusItem>) {
+      const findItem = findTrueItem(state.items, action.payload);
+      if (findItem && findItem.count > 1) {
+        findItem.count--;
+      } else {
+        state.items = findFalseItem(state.items, action.payload);
+      }
+      state.count = plus(state.items);
+      state.totalPrice = multiplication(state.items);
+    },
+    //!cleans the basket
+    clearBasket(state) {
+      state.items = [];
+      state.totalPrice = 0;
+      state.count = 0;
+    },
+    //!deletes the selected group items
+    deleteGroupItems(state, action: PayloadAction<TOnlyOneItem>) {
+      state.items = findFalseItem(state.items, action.payload);
+      state.count = plus(state.items);
+      state.totalPrice = multiplication(state.items);
+    },
+    //!selects only one item on HomePage
+    selectedItem(state, action: PayloadAction<TSelectItem>) {
+      state.changeItem = action.payload;
+    },
+    //!closes popup window
+    closePopup(state) {
+      state.changeItem = null;
+    },
+  },
+});
+
+export const {
+  addItem,
+  removeItem,
+  clearBasket,
+  deleteGroupItems,
+  selectedItem,
+  closePopup,
+} = getItems.actions;
+export default getItems.reducer;

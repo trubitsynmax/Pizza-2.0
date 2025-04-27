@@ -1,14 +1,14 @@
-import { configureStore } from "@reduxjs/toolkit";
-import fetchItems from "./getSetItems/sliceFetchItems";
-import getItems from "./getSetItems/sliceGetItems";
-import { useSelector, TypedUseSelectorHook, useDispatch } from "react-redux";
-import inputSort from "./InputSort/sortSlice";
+import { configureStore } from "@reduxjs/toolkit"; //!redux componetns
+import sliceFetch from "./items/sliceFetchItems"; //!fetch items
+import sliceItems from "./items/sliceItems"; //!add, remove... items
+import { useSelector, TypedUseSelectorHook, useDispatch } from "react-redux"; //!redux components
+import sliceSort from "./sortItems/sliceSort"; //!sort items
 
 export const store = configureStore({
   reducer: {
-    pizza: fetchItems,
-    items: getItems,
-    sort: inputSort,
+    pizza: sliceFetch,
+    items: sliceItems,
+    sort: sliceSort,
   },
 });
 

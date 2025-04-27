@@ -2,20 +2,20 @@
   border-bottom: 1px solid #f6f6f3ff;
   padding: 0 0 40px 0;
 
-  //header box
+  //!header wrapper with url
+  //*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
   &__row {
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
+
   &__column {
     flex: 0 1 33.333%;
     max-width: 100%;
     display: flex;
     flex-direction: column;
-    &_col1 {
-    }
     &_col2 {
       position: relative;
       span {
@@ -49,7 +49,9 @@
     }
   }
 
-  //header logo
+  //*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+  //!header logo with ulr
+  //*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
   &__logo {
     max-width: 38px;
@@ -59,7 +61,9 @@
       height: 100%;
     }
   }
-  &__body {
+
+  //!and without url
+  &__link {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -77,13 +81,9 @@
     }
   }
 
-  &__wrapper {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-  }
-
-  //header input
+  //*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+  //!header input with url
+  //*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
   &__input {
     border: 1px solid var(--gray);
@@ -98,7 +98,9 @@
     }
   }
 
-  //header button
+  //*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+  //!header button with url
+  //*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
   &__button {
     background-color: var(--orange);
@@ -112,6 +114,7 @@
     font-weight: var(--bold);
     gap: 10px;
   }
+
   &__sum {
     position: relative;
     flex: 0 1 50%;
@@ -127,12 +130,14 @@
       height: 100%;
     }
   }
+
   &__count {
     gap: 7px;
     position: relative;
     flex: 0 1 50%;
     text-align: center;
   }
+
   &__basket {
     position: absolute;
     top: 50%;
@@ -140,9 +145,16 @@
     transform: translate(0, -50%);
     margin: 0 5px 0 0;
   }
-}
+  //*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+  //!header wrapper without url
+  //*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-//header adaptive
+  &__wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+}
 
 @media (max-width: 1024px) {
   .header {

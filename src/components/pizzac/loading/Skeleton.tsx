@@ -1,5 +1,5 @@
-import React from "react";
-import "./skeleton.scss";
+import React from "react"; //!react components
+import "./skeleton.scss"; //!css
 
 const Skeleton: React.FC = () => {
   return (

@@ -1,7 +1,4 @@
 .empty {
-  &__container {
-  }
-
   &__title {
     text-align: center;
     font-size: 24px;
@@ -16,7 +13,7 @@
       height: 100%;
     }
   }
-  &__button {
+  &__button-back {
     padding: 10px 0;
     text-align: center;
     max-width: 200px;

@@ -1,11 +1,11 @@
-import "../components/css/basket.scss";
-import Trash from "../assets/image/Tash";
-import basket from "../assets/image/basket-black.svg";
-import { useAppDispatch, useAppSelector } from "../redux/store";
-import { clearBasket } from "../redux/getSetItems/sliceGetItems";
-import { Link } from "react-router-dom";
-import { Empty } from "../components";
-import { Basket } from "../components/basket/Basket";
+import "../components/css/basket.scss"; //!style
+import Trash from "../assets/image/Tash"; //!trash image
+import basket from "../assets/image/basket-black.svg"; //!basket image
+import { useAppDispatch, useAppSelector } from "../redux/store"; //!redux components
+import { clearBasket } from "../redux/items/sliceItems"; //!slice clear basket
+import { Link } from "react-router-dom"; //!react-router component
+import { Empty } from "../components"; //!empty component
+import { Basket } from "../components/index"; //!basket component
 
 const BasktetPage = () => {
   const items = useAppSelector((state) => state.items.items);
