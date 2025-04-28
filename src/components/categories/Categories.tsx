@@ -1,5 +1,5 @@
 import React from "react"; //!React component
-import { Sort } from "../index"; //!custom component sort
+import { Sort } from "./index"; //!custom component sort
 import "../style.css"; //!css
 import { useAppDispatch, useAppSelector } from "../../redux/store"; //!dispatch / selector
 import {
@@ -8,7 +8,7 @@ import {
   selectSort,
 } from "../../redux/sortItems/sliceSort"; //!slice asc/desc, search category (selectCategory), searc sort (selectSort)
 import { ISortList } from "../types/types"; //!types
-import { listCategory } from "./data"; //!categories list
+import { listCategory } from "./data"; //!data categories list
 
 const Categories: React.FC = () => {
   const dispatch = useAppDispatch();

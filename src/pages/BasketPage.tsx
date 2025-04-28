@@ -4,15 +4,16 @@ import basket from "../assets/image/basket-black.svg"; //!basket image
 import { useAppDispatch, useAppSelector } from "../redux/store"; //!redux components
 import { clearBasket } from "../redux/items/sliceItems"; //!slice clear basket
 import { Link } from "react-router-dom"; //!react-router component
-import { Empty } from "../components"; //!empty component
-import { Basket } from "../components/index"; //!basket component
+import { Empty } from "../components/basket/index"; //!empty component
+import { Basket } from "../components/basket/index"; //!basket component
+import { setItemsLS } from "../components/utils"; //!utils function set items in local storage
 
 const BasktetPage = () => {
   const items = useAppSelector((state) => state.items.items);
   const totalCount = useAppSelector((state) => state.items.count);
   const totalPrice = useAppSelector((state) => state.items.totalPrice);
   const dispatch = useAppDispatch();
-
+  setItemsLS(items);
   const clearItems = () => {
     dispatch(clearBasket());
   };
@@ -29,9 +30,9 @@ const BasktetPage = () => {
             <div className="basket__title">Корзина</div>
           </div>
           <div className="basket__clear">
-            <Trash className={"basket__picture basket__picture_small"} />
-            <div className="basket__text-clear" onClick={clearItems}>
-              Очистить корзину
+            <div className="basket__clear-body" onClick={clearItems}>
+              <Trash className="basket__picture basket__picture_small" />
+              <div className="basket__text-clear">Очистить корзину</div>
             </div>
           </div>
         </div>

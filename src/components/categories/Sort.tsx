@@ -1,7 +1,7 @@
 import React from "react"; //!react component
 import { ISortList, IFilters } from "../types/types"; //!types
 import { sortList } from "./data"; //!sort data
-import arrow from "../../assets/image/arrowAscDesc.png";
+import arrow from "../../assets/image/arrowAscDesc.png"; //!black arrow for sort
 
 const Sort: React.FC<IFilters> = ({
   ascDesc,

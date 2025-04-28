@@ -1,8 +1,7 @@
-import { Header } from "./components/index"; //!Header component
+import Header from "./components/header/Header"; //!Header component
 import { HomePage, NotFoundPage, Basket } from "./pages/index"; //!home page, 404 page, basket page
 import "./components/style.css"; //!styles
 import { Route, Routes } from "react-router-dom"; //!react-router components
-
 function App() {
   return (
     <div className="wrapper">

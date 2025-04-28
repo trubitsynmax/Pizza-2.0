@@ -17,16 +17,6 @@ interface IFilters {
   sort: ISortList;
 }
 
-//use: AddPizza
-// export interface IAddPizzaProps {
-//   getPizza: () => void;
-//   removeItem: () => void;
-//   typesPizza: number;
-//   getSizes: number;
-//   id: string;
-//   totalPrice: number;
-// }
-
 //use: redux -> items -> sliceFetchItems
 type TUrlFilter = {
   isCategory: string;

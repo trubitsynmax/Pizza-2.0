@@ -5,13 +5,21 @@ import {
   TMinusItem,
   TPlusItem,
 } from "../../components/types/types"; //!types
-import { findTrueItem, multiplication, plus, findFalseItem } from "./sliceData"; //!function for slice function
+import {
+  findTrueItem,
+  multiplication,
+  plus,
+  findFalseItem,
+} from "../../components/utils/mathFunctions"; //!function for slice function
+import { getItemsLS } from "../../components/utils/index"; //!get items in local storage
+
+const { items, count, totalPrice } = getItemsLS();
 
 const initialState = {
-  items: [] as TPlusItem[],
+  items,
   changeItem: {} as TSelectItem,
-  count: 0,
-  totalPrice: 0,
+  count,
+  totalPrice,
   localCount: 0,
 };
 

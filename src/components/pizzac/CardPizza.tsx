@@ -7,7 +7,7 @@ import {
 } from "../../redux/items/sliceItems"; //!slice add, open popup and take info object & remove items
 import { namesTypes } from "../categories/data"; //!["традиционное", "тонкое"]
 import { TFullItems } from "../types/types"; //!type
-
+import { setItemsLS } from "../utils/index"; //!utils function set in local storage
 const CardPizza: React.FC<TFullItems> = ({
   id,
   imageUrl,
@@ -23,6 +23,7 @@ const CardPizza: React.FC<TFullItems> = ({
   const dispatch = useAppDispatch();
   const item = useAppSelector((state) => state.items.items);
 
+  setItemsLS(item);
   const onAddPizza = (): void => {
     dispatch(
       addItem({

@@ -1,8 +1,4 @@
-import {
-  TPlusItem,
-  TMinusItem,
-  TOnlyOneItem,
-} from "../../components/types/types"; //!types
+import { TPlusItem, TMinusItem, TOnlyOneItem } from "../types/types"; //!types
 
 const findTrueItem = (items: TPlusItem[], payload: TPlusItem | TMinusItem) => {
   return items.find(

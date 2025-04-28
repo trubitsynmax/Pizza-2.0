@@ -191,12 +191,10 @@
     font-size: 32px;
     font-weight: var(--bold);
   }
-  &__clear {
+  &__clear-body {
     display: flex;
-    justify-content: flex-end;
     align-items: center;
-    flex: 0 1 50%;
-    gap: 7px;
+    gap: 10px;
     color: #b6b6b4ff;
     cursor: pointer;
     transition: color 300ms ease 0s;
@@ -207,9 +205,11 @@
       }
     }
   }
-  &__text-clear {
+  &__clear {
+    display: flex;
+    justify-content: flex-end;
+    flex: 0 1 50%;
   }
-
   &__all-count {
     font-size: 20px;
     span {
