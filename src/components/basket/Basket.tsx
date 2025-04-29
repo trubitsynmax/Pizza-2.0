@@ -3,10 +3,10 @@ import {
   deleteGroupItems,
   removeItem,
 } from "../../redux/items/sliceItems"; //!custom slices
-import { useAppDispatch } from "../../redux/store"; //!dispatch
+import { useAppDispatch } from "../../redux/store";
 import { namesTypes } from "../categories/data"; //!['традиционное', 'тонкое']
-import "../css/basket.scss"; //!css
-import { TPlusItem } from "../types/types"; //!types
+import "../css/basket.scss";
+import { TPlusItem } from "../types/types";
 
 const Basket: React.FC<TPlusItem> = ({
   id,

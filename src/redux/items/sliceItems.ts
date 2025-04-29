@@ -1,16 +1,16 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit"; //!redux components
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import {
   TSelectItem,
   TOnlyOneItem,
   TMinusItem,
   TPlusItem,
-} from "../../components/types/types"; //!types
+} from "../../components/types/types";
 import {
   findTrueItem,
   multiplication,
   plus,
   findFalseItem,
-} from "../../components/utils/mathFunctions"; //!function for slice function
+} from "../../components/utils/mathFunctions";
 import { getItemsLS } from "../../components/utils/index"; //!get items in local storage
 
 const { items, count, totalPrice } = getItemsLS();

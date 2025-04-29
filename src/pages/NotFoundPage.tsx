@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"; //!react-router component
+import { Link } from "react-router-dom";
 
 const NotFoundPage = () => {
   return (

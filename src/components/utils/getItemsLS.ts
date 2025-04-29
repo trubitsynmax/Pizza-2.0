@@ -1,4 +1,4 @@
-import { TPlusItem } from "../types/types"; //!types
+import { TPlusItem } from "../types/types";
 import { multiplication, plus } from "./mathFunctions"; //!function for multiplication and function for plus
 
 const getItemsLS = () => {

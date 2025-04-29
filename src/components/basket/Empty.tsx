@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom"; //!Link component
-import EmptyImage from "../../assets/image/empty.png"; //!image empty
-import "../style.css"; //!css
+import { Link } from "react-router-dom";
+import EmptyImage from "../../assets/image/empty.png";
+import "../style.css";
 const Empty = () => {
   return (
     <div className="empty">

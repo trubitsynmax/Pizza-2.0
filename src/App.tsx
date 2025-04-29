@@ -1,8 +1,10 @@
-import Header from "./components/header/Header"; //!Header component
-import { HomePage, NotFoundPage, Basket } from "./pages/index"; //!home page, 404 page, basket page
-import "./components/style.css"; //!styles
-import { Route, Routes } from "react-router-dom"; //!react-router components
-function App() {
+import Header from "./components/header/Header";
+import { HomePage, NotFoundPage, Basket } from "./pages/index";
+import "./components/style.css";
+import { Route, Routes } from "react-router-dom";
+import React from "react";
+
+const App = React.memo(() => {
   return (
     <div className="wrapper">
       <Header />
@@ -15,6 +17,6 @@ function App() {
       </div>
     </div>
   );
-}
+});
 
 export default App;

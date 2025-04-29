@@ -1,5 +1,5 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit"; //!redux components
-import { TSelectUrlFilter } from "../../components/types/types"; //!types
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { TSelectUrlFilter } from "../../components/types/types";
 
 const initialState = {
   inputValue: "",

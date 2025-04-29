@@ -1,8 +1,8 @@
-import { addItem, closePopup, removeItem } from "../../redux/items/sliceItems"; //!slice add items, close popup & remove items
-import { useAppDispatch, useAppSelector } from "../../redux/store"; //!redux selector/dispatch
-import { TPlusItem } from "../types/types"; //!type
-import "../style.css"; //!css
-import React from "react"; //!react components
+import { addItem, closePopup, removeItem } from "../../redux/items/sliceItems";
+import { useAppDispatch, useAppSelector } from "../../redux/store";
+import { TPlusItem } from "../types/types";
+import "../style.css";
+import React from "react";
 
 const Popup: React.FC<TPlusItem> = ({
   id,

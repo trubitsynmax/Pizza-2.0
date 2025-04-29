@@ -1,11 +1,11 @@
-import { Categories } from "../components/categories/index"; //!custom component categories
-import { Pizzac } from "../components/pizzac/index"; //!custom component pizzac
-import Popup from "../components/popup/Popup"; //!custor component popup
-import { useAppSelector } from "../redux/store"; //!redux component
-import { SelectUserFilter } from "../components/categories/index"; //!slice input slice
-export default function HomePage() {
+import React from "react";
+import { Categories } from "../components/categories/index";
+import { Pizzac } from "../components/pizzac/index";
+import Popup from "../components/popup/Popup";
+import { useAppSelector } from "../redux/store";
+
+const HomePage = () => {
   const changeItem = useAppSelector((state) => state.items.changeItem);
-  SelectUserFilter();
   return (
     <div>
       <Categories />
@@ -13,4 +13,6 @@ export default function HomePage() {
       {changeItem && <Popup {...changeItem} {...changeItem.info} />}
     </div>
   );
-}
+};
+
+export default React.memo(HomePage);

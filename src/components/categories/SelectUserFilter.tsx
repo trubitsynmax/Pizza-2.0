@@ -5,15 +5,21 @@ import { getPizzac } from "../../redux/items/sliceFetchItems"; //!slice fetch
 import { selectUrl } from "../../redux/sortItems/sliceSort"; //!slice filters in url
 import qs from "qs"; //!qs library
 import { sortList } from "./data"; //!sort: популярность, цена, алфавит
+import { shallowEqual } from "react-redux";
 
-const SelectUserFilter = () => {
+const useSelectUserFilter = () => {
   const navigate = useNavigate();
   const fisrtRender = React.useRef<boolean>(false);
   const dispatch = useAppDispatch();
 
-  const category = useAppSelector((state) => state.sort.listCategoryId);
-  const sort = useAppSelector((state) => state.sort.sortName);
-  const ascDesc = useAppSelector((state) => state.sort.AscDesc);
+  const { category, sort, ascDesc } = useAppSelector(
+    (state) => ({
+      category: state.sort.listCategoryId,
+      sort: state.sort.sortName,
+      ascDesc: state.sort.AscDesc,
+    }),
+    shallowEqual
+  );
 
   const isCategory = category >= 0 ? `category=${category}` : "";
   const isAscDesc = ascDesc ? `order=asc` : "order=desc";
@@ -35,9 +41,7 @@ const SelectUserFilter = () => {
     }
   }, []);
   React.useEffect(() => {
-    if (fisrtRender.current) {
-      dispatch(getPizzac({ isCategory, isAscDesc, isSort }));
-    }
+    dispatch(getPizzac({ isCategory, isAscDesc, isSort }));
   }, [isCategory, isAscDesc, isSort]);
 
   React.useEffect(() => {
@@ -53,4 +57,4 @@ const SelectUserFilter = () => {
   }, [isCategory, isAscDesc, isSort]);
 };
 
-export default SelectUserFilter;
+export default useSelectUserFilter;

@@ -1,14 +1,19 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"; //!redux components
-import axios from "axios"; //!axios
-import { TFullItems, TUrlFilter } from "../../components/types/types"; //!types
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
+import { TFullItems, TUrlFilter } from "../../components/types/types";
 export const getPizzac = createAsyncThunk(
   "items/getPizzac",
   async (params: TUrlFilter) => {
     //!isCategory - сырная, мясная и т.д.; isAscDesc - asc or desc sort; isSort - сортировка по: цене, алфавиту и т.д.
     const { isCategory, isAscDesc, isSort } = params;
-    const { data } = await axios.get(
-      `https://67d43e67d2c7857431ecfd6a.mockapi.io/Pizzac?${isCategory}&${isAscDesc}&${isSort}`
-    );
+    const isDefaultUrl =
+      isCategory === "category=0" &&
+      isAscDesc === "order=asc" &&
+      isSort === "sortBy=rating";
+    const url = isDefaultUrl
+      ? `https://67d43e67d2c7857431ecfd6a.mockapi.io/Pizzac`
+      : `https://67d43e67d2c7857431ecfd6a.mockapi.io/Pizzac?${isCategory}&${isAscDesc}&${isSort}`;
+    const { data } = await axios.get(url);
     return data;
   }
 );

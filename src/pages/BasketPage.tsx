@@ -1,18 +1,20 @@
-import "../components/css/basket.scss"; //!style
-import Trash from "../assets/image/Tash"; //!trash image
-import basket from "../assets/image/basket-black.svg"; //!basket image
-import { useAppDispatch, useAppSelector } from "../redux/store"; //!redux components
-import { clearBasket } from "../redux/items/sliceItems"; //!slice clear basket
-import { Link } from "react-router-dom"; //!react-router component
-import { Empty } from "../components/basket/index"; //!empty component
-import { Basket } from "../components/basket/index"; //!basket component
+import "../components/css/basket.scss";
+import Trash from "../assets/image/Tash";
+import basket from "../assets/image/basket-black.svg";
+import { useAppDispatch, useAppSelector } from "../redux/store";
+import { clearBasket } from "../redux/items/sliceItems";
+import { Link } from "react-router-dom";
+import { Empty } from "../components/basket/index";
+import { Basket } from "../components/basket/index";
 import { setItemsLS } from "../components/utils"; //!utils function set items in local storage
+import React from "react";
 
 const BasktetPage = () => {
   const items = useAppSelector((state) => state.items.items);
   const totalCount = useAppSelector((state) => state.items.count);
   const totalPrice = useAppSelector((state) => state.items.totalPrice);
   const dispatch = useAppDispatch();
+
   setItemsLS(items);
   const clearItems = () => {
     dispatch(clearBasket());

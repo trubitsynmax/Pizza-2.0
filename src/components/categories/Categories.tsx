@@ -9,21 +9,30 @@ import {
 } from "../../redux/sortItems/sliceSort"; //!slice asc/desc, search category (selectCategory), searc sort (selectSort)
 import { ISortList } from "../types/types"; //!types
 import { listCategory } from "./data"; //!data categories list
+import { shallowEqual } from "react-redux";
+import useSelectUserFilter from "./SelectUserFilter";
 
 const Categories: React.FC = () => {
   const dispatch = useAppDispatch();
-  const ascDesc = useAppSelector((state) => state.sort.AscDesc);
-  const listCategoryId = useAppSelector((state) => state.sort.listCategoryId);
-  const sort = useAppSelector((state) => state.sort.sortName);
-  const getCategoryIndex = (idx: number) => {
+  useSelectUserFilter();
+
+  const { ascDesc, listCategoryId, sort } = useAppSelector(
+    (state) => ({
+      ascDesc: state.sort.AscDesc,
+      listCategoryId: state.sort.listCategoryId,
+      sort: state.sort.sortName,
+    }),
+    shallowEqual
+  );
+  const getCategoryIndex = React.useCallback((idx: number) => {
     dispatch(selectCategory(idx));
-  };
-  const getAscOrDesc = () => {
+  }, []);
+  const getAscOrDesc = React.useCallback(() => {
     dispatch(selectAscDesc(!ascDesc));
-  };
-  const getSelectSort = (value: ISortList) => {
+  }, []);
+  const getSelectSort = React.useCallback((value: ISortList) => {
     dispatch(selectSort(value));
-  };
+  }, []);
 
   return (
     <div className="categories">

@@ -1,8 +1,9 @@
-import { useAppSelector } from "../../redux/store"; //!redux selector
-import { CardPizza } from "./index"; //!custom component
-import Skeleton from "./loading/Skeleton"; //!status == 'pending' / skeleton components
-import Error from "./error/Error"; //!status == 'error' / error components
-import "../css/pizzac.scss"; //!css
+import { useAppSelector } from "../../redux/store";
+import { CardPizza } from "./index";
+import Skeleton from "./loading/Skeleton"; //!status == 'pending'
+import Error from "./error/Error"; //!status == 'error'
+import "../css/pizzac.scss";
+import React from "react";
 
 const Pizzac = () => {
   const pizzac = useAppSelector((state) => state.pizza.items);

@@ -1,8 +1,8 @@
-import { configureStore } from "@reduxjs/toolkit"; //!redux componetns
-import sliceFetch from "./items/sliceFetchItems"; //!fetch items
-import sliceItems from "./items/sliceItems"; //!add, remove... items
-import { useSelector, TypedUseSelectorHook, useDispatch } from "react-redux"; //!redux components
-import sliceSort from "./sortItems/sliceSort"; //!sort items
+import { configureStore } from "@reduxjs/toolkit";
+import sliceFetch from "./items/sliceFetchItems";
+import sliceItems from "./items/sliceItems";
+import { useSelector, TypedUseSelectorHook, useDispatch } from "react-redux";
+import sliceSort from "./sortItems/sliceSort";
 
 export const store = configureStore({
   reducer: {

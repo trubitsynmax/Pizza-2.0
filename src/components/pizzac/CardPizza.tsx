@@ -1,12 +1,12 @@
-import React from "react"; //!react components
-import { useAppDispatch, useAppSelector } from "../../redux/store"; //!redux dispatch/selector
+import React from "react";
+import { useAppDispatch, useAppSelector } from "../../redux/store";
 import {
   addItem,
   selectedItem,
   removeItem,
-} from "../../redux/items/sliceItems"; //!slice add, open popup and take info object & remove items
+} from "../../redux/items/sliceItems";
 import { namesTypes } from "../categories/data"; //!["традиционное", "тонкое"]
-import { TFullItems } from "../types/types"; //!type
+import { TFullItems } from "../types/types";
 import { setItemsLS } from "../utils/index"; //!utils function set in local storage
 const CardPizza: React.FC<TFullItems> = ({
   id,
@@ -22,7 +22,6 @@ const CardPizza: React.FC<TFullItems> = ({
   const [size, setSize] = React.useState(0);
   const dispatch = useAppDispatch();
   const item = useAppSelector((state) => state.items.items);
-
   setItemsLS(item);
   const onAddPizza = (): void => {
     dispatch(
