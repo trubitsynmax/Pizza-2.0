@@ -1,6 +1,6 @@
 import "./error.scss";
 
-const Error = () => {
+const Error: React.FC = () => {
   return (
     <div className="error">
       <div className="container">

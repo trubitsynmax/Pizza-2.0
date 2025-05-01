@@ -24,13 +24,13 @@ const Categories: React.FC = () => {
     }),
     shallowEqual
   );
-  const getCategoryIndex = React.useCallback((idx: number) => {
+  const getCategoryIndex = React.useCallback((idx: number): void => {
     dispatch(selectCategory(idx));
   }, []);
-  const getAscOrDesc = React.useCallback(() => {
+  const getAscOrDesc = React.useCallback((): void => {
     dispatch(selectAscDesc(!ascDesc));
   }, []);
-  const getSelectSort = React.useCallback((value: ISortList) => {
+  const getSelectSort = React.useCallback((value: ISortList): void => {
     dispatch(selectSort(value));
   }, []);
 

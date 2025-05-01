@@ -3,24 +3,24 @@ import React from "react";
 import { useAppDispatch } from "../../redux/store";
 import { selectInput } from "../../redux/sortItems/sliceSort";
 
-export const Input = React.memo(() => {
+export const Input: React.FC = React.memo(() => {
   const inputRef = React.useRef<HTMLInputElement>(null);
   const [valueInput, setValueInput] = React.useState("");
   const dispatch = useAppDispatch();
   const getValueInput = React.useCallback(
-    debounce((str: string) => {
+    debounce((str: string): void => {
       dispatch(selectInput(str));
     }, 500),
     []
   );
 
-  const clearInput = React.useCallback(() => {
+  const clearInput = React.useCallback((): void => {
     setValueInput("");
     getValueInput("");
     inputRef.current?.focus();
   }, []);
   const getUsersValueInput = React.useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
+    (event: React.ChangeEvent<HTMLInputElement>): void => {
       setValueInput(event.target.value);
       getValueInput(event.target.value);
     },

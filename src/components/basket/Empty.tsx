@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import EmptyImage from "../../assets/image/empty.png";
 import "../style.css";
-const Empty = () => {
+const Empty: React.FC = () => {
   return (
     <div className="empty">
       <div className="empty__container container">

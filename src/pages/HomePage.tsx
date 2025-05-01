@@ -4,7 +4,7 @@ import { Pizzac } from "../components/pizzac/index";
 import Popup from "../components/popup/Popup";
 import { useAppSelector } from "../redux/store";
 
-const HomePage = () => {
+const HomePage: React.FC = () => {
   const changeItem = useAppSelector((state) => state.items.changeItem);
   return (
     <div>

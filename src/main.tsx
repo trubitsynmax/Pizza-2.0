@@ -9,9 +9,9 @@ import { store } from "./redux/store.ts";
 createRoot(document.getElementById("root")!).render(
   <Provider store={store}>
     <BrowserRouter>
-      <StrictMode>
-        <App />
-      </StrictMode>
+      {/* <StrictMode> */}
+      <App />
+      {/* </StrictMode> */}
     </BrowserRouter>
   </Provider>
 );

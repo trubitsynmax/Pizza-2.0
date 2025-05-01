@@ -20,15 +20,15 @@ const Basket: React.FC<TPlusItem> = ({
   //*redux
   const dispatch = useAppDispatch();
 
-  const plusItem = () => {
+  const plusItem = (): void => {
     dispatch(
       addItem({ id, imageUrl, name, typesPizza, getSizes, price, count })
     );
   };
-  const minusItem = () => {
+  const minusItem = (): void => {
     dispatch(removeItem({ id, typesPizza, getSizes, count }));
   };
-  const deleteGroup = () => {
+  const deleteGroup = (): void => {
     dispatch(deleteGroupItems({ id, typesPizza, getSizes }));
   };
 

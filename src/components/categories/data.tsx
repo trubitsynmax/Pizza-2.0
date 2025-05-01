@@ -1,6 +1,6 @@
-import { TListCategory } from "../types/types";
+import { TListCategory, ISortList } from "../types/types";
 
-const sortList = [
+const sortList: ISortList[] = [
   { name: "популярности", sortCategory: "rating" },
   { name: "цене", sortCategory: "price" },
   { name: "алфавиту", sortCategory: "name" },

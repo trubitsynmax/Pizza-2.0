@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import basket from "../../assets/image/basket.svg";
 import { useAppSelector } from "../../redux/store";
 
-export const BasketLink = React.memo(() => {
+export const BasketLink: React.FC = React.memo(() => {
   const amountPizzas = useAppSelector((state) => state.items.count);
   const pricePizzas = useAppSelector((state) => state.items.totalPrice);
   return (

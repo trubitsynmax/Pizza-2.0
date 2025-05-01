@@ -2,7 +2,7 @@ import React from "react";
 import logo from "../../assets/image/pizza-logo.svg";
 import { Link } from "react-router-dom";
 
-export const Logo = React.memo(() => {
+export const Logo: React.FC = React.memo(() => {
   return (
     <Link to="/" className="header__link">
       <img

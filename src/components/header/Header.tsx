@@ -4,7 +4,7 @@ import { Input } from "./Input";
 import { Logo } from "./Logo";
 import { BasketLink } from "./BasketLink";
 import React from "react";
-const Header = () => {
+const Header: React.FC = () => {
   const url = useLocation().pathname;
 
   return (

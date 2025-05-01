@@ -16,7 +16,7 @@ const Popup: React.FC<TPlusItem> = ({
   const dispatch = useAppDispatch();
   const changeItem = useAppSelector((state) => state.items.changeItem);
 
-  const onClosePopup = (e: React.MouseEvent<HTMLDivElement>) => {
+  const onClosePopup = (e: React.MouseEvent<HTMLDivElement>): void => {
     if (e.target == e.currentTarget) {
       dispatch(closePopup());
     }
@@ -34,12 +34,12 @@ const Popup: React.FC<TPlusItem> = ({
     };
   }, [changeItem?.id]);
 
-  const addSelectPizza = () => {
+  const addSelectPizza = (): void => {
     dispatch(
       addItem({ id, imageUrl, name, typesPizza, getSizes, price, count })
     );
   };
-  const removeSelectPizza = () => {
+  const removeSelectPizza = (): void => {
     dispatch(removeItem({ id, getSizes: getSizes, typesPizza, count }));
   };
   return (

@@ -10,7 +10,7 @@ const Sort: React.FC<IFilters> = ({
   getSelectSort,
 }) => {
   const [activePopup, setActivePopup] = React.useState(false);
-  const selectSort = (value: ISortList) => {
+  const selectSort = (value: ISortList): void => {
     getSelectSort(value);
     setActivePopup(!activePopup);
   };

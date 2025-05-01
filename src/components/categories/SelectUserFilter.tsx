@@ -22,10 +22,10 @@ const useSelectUserFilter = () => {
   );
 
   const isCategory = category >= 0 ? `category=${category}` : "";
-  const isAscDesc = ascDesc ? `order=asc` : "order=desc";
+  const isAscDesc: string = ascDesc ? `order=asc` : "order=desc";
   const isSort = sort ? `sortBy=${sort.sortCategory}` : "";
 
-  React.useEffect(() => {
+  React.useEffect((): void => {
     if (window.location.search) {
       const params = qs.parse(window.location.search.substring(1));
       const filter = Number(params.filter);
@@ -40,11 +40,13 @@ const useSelectUserFilter = () => {
       dispatch(getPizzac({ isCategory, isAscDesc, isSort }));
     }
   }, []);
-  React.useEffect(() => {
-    dispatch(getPizzac({ isCategory, isAscDesc, isSort }));
-  }, [isCategory, isAscDesc, isSort]);
+  React.useEffect((): void => {
+    if (fisrtRender.current) {
+      dispatch(getPizzac({ isCategory, isAscDesc, isSort }));
+    }
+  }, [category, sort, ascDesc]);
 
-  React.useEffect(() => {
+  React.useEffect((): void => {
     if (fisrtRender.current) {
       const newUrl = qs.stringify({
         filter: category,

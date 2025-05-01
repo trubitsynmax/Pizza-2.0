@@ -3,11 +3,10 @@ import { CardPizza } from "./index";
 import Skeleton from "./loading/Skeleton"; //!status == 'pending'
 import Error from "./error/Error"; //!status == 'error'
 import "../css/pizzac.scss";
-import React from "react";
 
-const Pizzac = () => {
+const Pizzac: React.FC = () => {
   const pizzac = useAppSelector((state) => state.pizza.items);
-  const status = useAppSelector((state) => state.pizza.status);
+  const status: string = useAppSelector((state) => state.pizza.status);
   const inputValue = useAppSelector((state) => state.sort.inputValue);
 
   const sortPizza = pizzac

@@ -7,16 +7,15 @@ import { Link } from "react-router-dom";
 import { Empty } from "../components/basket/index";
 import { Basket } from "../components/basket/index";
 import { setItemsLS } from "../components/utils"; //!utils function set items in local storage
-import React from "react";
 
-const BasktetPage = () => {
+const BasktetPage: React.FC = () => {
   const items = useAppSelector((state) => state.items.items);
   const totalCount = useAppSelector((state) => state.items.count);
   const totalPrice = useAppSelector((state) => state.items.totalPrice);
   const dispatch = useAppDispatch();
 
   setItemsLS(items);
-  const clearItems = () => {
+  const clearItems = (): void => {
     dispatch(clearBasket());
   };
   return items.length > 0 ? (

@@ -36,7 +36,7 @@ const CardPizza: React.FC<TFullItems> = ({
       })
     );
   };
-  const openPopup = () => {
+  const openPopup = (): void => {
     dispatch(
       selectedItem({
         id,
@@ -50,13 +50,13 @@ const CardPizza: React.FC<TFullItems> = ({
       })
     );
   };
-  const minusItem = () => {
+  const minusItem = (): void => {
     dispatch(removeItem({ id, getSizes: sizes[size], typesPizza, count }));
   };
-  const onClickTypesPizza = (idx: number) => {
+  const onClickTypesPizza = (idx: number): void => {
     setTypesPizza(idx);
   };
-  const onChangeSize = (idx: number) => {
+  const onChangeSize = (idx: number): void => {
     setSize(idx);
   };
 
@@ -68,7 +68,7 @@ const CardPizza: React.FC<TFullItems> = ({
     (obj) => obj.id === id && obj.typesPizza === typesPizza
   );
 
-  const selectItem = React.useMemo(() => {
+  const selectItem = React.useMemo((): number => {
     if (!item.length) return 0;
     const items = item?.find((item) => item.getSizes == sizes[size]);
     return items?.count || 0;

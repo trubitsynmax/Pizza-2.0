@@ -6,14 +6,9 @@ export const getPizzac = createAsyncThunk(
   async (params: TUrlFilter) => {
     //!isCategory - сырная, мясная и т.д.; isAscDesc - asc or desc sort; isSort - сортировка по: цене, алфавиту и т.д.
     const { isCategory, isAscDesc, isSort } = params;
-    const isDefaultUrl =
-      isCategory === "category=0" &&
-      isAscDesc === "order=asc" &&
-      isSort === "sortBy=rating";
-    const url = isDefaultUrl
-      ? `https://67d43e67d2c7857431ecfd6a.mockapi.io/Pizzac`
-      : `https://67d43e67d2c7857431ecfd6a.mockapi.io/Pizzac?${isCategory}&${isAscDesc}&${isSort}`;
-    const { data } = await axios.get(url);
+    const { data } = await axios.get<TFullItems[]>(
+      `https://67d43e67d2c7857431ecfd6a.mockapi.io/Pizzac?${isCategory}&${isAscDesc}&${isSort}`
+    );
     return data;
   }
 );
